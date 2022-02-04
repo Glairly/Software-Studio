@@ -1,0 +1,111 @@
+:root {
+    --sidebar-width: 16rem;
+}
+
+* {
+    box-sizing: border-box;
+    transition: all 300ms ease-in-out;
+}
+
+h1,
+.h1 {
+    font-size: 6rem !important;
+}
+
+.subheading {
+    font-size: 1.5rem !important;
+    color: gray;
+}
+
+#page-top {
+    display: flex;
+    padding-left: var(--sidebar-width);
+}
+
+#sideNav {
+    max-width: var(--sidebar-width);
+    height: 100vh;
+    max-height: 100vh;
+    background-color: var(--bs-purple);
+}
+
+.profile-image {
+    width: 9rem;
+    /* 9 * 16 px */
+    height: 9rem;
+    border-radius: 9999px;
+    border: 0px solid rgba(128, 128, 128, 0.5);
+}
+
+.profile-image:hover {
+    border: 0.5rem solid rgba(128, 128, 128, 0.5);
+    border-radius: 9999px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.resume-section {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    max-width: 75rem;
+}
+
+@media (min-width: 768px) {
+    section.resume-section {
+        min-height: 100vh;
+    }
+}
+
+@media (min-width: 992px) {
+    section.resume-section {
+        padding-left: 3rem;
+        padding-right: 3rem;
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+}
+
+.social-icons .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.5rem;
+    width: 3.5rem;
+    background-color: #495057;
+    color: #fff;
+    border-radius: 100%;
+    font-size: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.social-icons .social-icon:last-child {
+    margin-right: 0;
+}
+
+.social-icons .social-icon:hover {
+    background-color: #bd5d38;
+}
+
+.text-indigo {
+    color: var(--bs-indigo);
+}
+
+.footer {
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    background-color: var(--bs-purple);
+    color: white;
+    border-radius: 0;
+}
