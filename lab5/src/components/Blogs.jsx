@@ -8,7 +8,7 @@ const Blogs = ({ data }) => {
 
   const increment = () => {
     if (cooldown) return coolDownError();
-    if (vote >= 9) return alert("Maximum upvote !!");
+    if (vote >= 4) return alert("Maximum upvote !!");
     // Start vote to 1
     setVote(Math.max(vote + 1, 1));
     coolingDown();
