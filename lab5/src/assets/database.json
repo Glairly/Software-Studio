@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Wongvarit Pancharoen",
+    "no": "62010787",
+    "linkedin": "https://www.linkedin.com/in/wongvarit-pancharoen-8b07731b3/",
+    "pictureUrl": "https://glairly.github.io/img/oak.a9bc6269.jpg",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "carousel": [
+      "https://i.pinimg.com/564x/e5/ac/2f/e5ac2fdaf6741953995751a9293576df.jpg",
+      "https://i.pinimg.com/564x/8d/30/62/8d306259fa354d0451e7e620e33f48cc.jpg",
+      "https://i.pinimg.com/564x/ea/68/3d/ea683de7ba40e31c63eb64b01e4aa4e4.jpg",
+      "https://i.pinimg.com/564x/bb/3d/b8/bb3db8bbed2e20bea2f47ecd2a63d518.jpg"
+    ],
+    "vote": -1
+  },
+  {
+    "name": "1",
+    "no": "62010787",
+    "linkedin": "https://www.linkedin.com/in/wongvarit-pancharoen-8b07731b3/",
+    "pictureUrl": "https://glairly.github.io/img/oak.a9bc6269.jpg",
+    "content": "Some Content",
+    "carousel": [],
+    "vote": -1
+  },
+  {
+    "name": "2",
+    "no": "62010787",
+    "linkedin": "https://www.linkedin.com/in/wongvarit-pancharoen-8b07731b3/",
+    "pictureUrl": "https://glairly.github.io/img/oak.a9bc6269.jpg",
+    "content": "Some Content",
+    "carousel": [],
+    "vote": -1
+  },
+  {
+    "name": "3",
+    "no": "62010787",
+    "linkedin": "https://www.linkedin.com/in/wongvarit-pancharoen-8b07731b3/",
+    "pictureUrl": "https://glairly.github.io/img/oak.a9bc6269.jpg",
+    "content": "Some Content",
+    "carousel": [],
+    "vote": -1
+  }
+]

@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.icon-wrapper {
+    @apply border rounded-full w-10 h-10 flex items-center justify-center;
+}
+
+.icon {
+    @apply transition-all hover:text-2xl active:text-xl;
+}
+
+.blogs-wrapper {
+    @apply p-4 flex flex-col flex-grow;
+}
+
+.blogs-name {
+    @apply text-6xl font-bold text-center w-full first-letter:uppercase ;
+}
+
+.blogs-no {
+    @apply text-2xl text-gray-500 font-bold;
+}
+
+.blogs-content {
+    @apply mt-10 text-left indent-10 text-xl;
+}
+
+.blogs-carousel {
+    @apply mt-10  first-letter:uppercase flex justify-evenly  overflow-auto gap-y-8;
+    min-width: calc(16rem * 4);
+}
+
+.blogs-carousel figure {
+    @apply flex justify-center items-center
+}
+
+.blogs-carousel figure img {
+    width : 16rem;
+    height: 16rem;
+    @apply object-cover rounded-xl;
+}

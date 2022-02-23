@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .btn {
+        padding: 1rem;
+        margin: 1rem;
+        background-color: #6366f1;
+        color: #ffffff;
+        width: max-content;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+      .member-text {
+        padding: 1rem;
+        margin: 1rem;
+        /* background-color: #6366f1; */
+        border: #6366f1 dashed 2px;
+        /* color: #ffffff; */
+        width: max-content;
+        border-radius: 0.5rem;
+        /* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06); */
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <section id="sec1" class="flex flex-col">
+        <button id="ts-btn" class="btn">What time is it?</button>
+        <div id="timestamp" class="p-4 m-4 mt-1 rounded-lg w-max"></div>
+      </section>
+      <script>
+        var ts = document.querySelector("#timestamp");
+        var btn = document.querySelector("#ts-btn");
+        var colorList = [
+          "#ef4444",
+          "#f97316",
+          "#84cc16",
+          "#22c55e",
+          "#06b6d4",
+          "#3b82f6",
+          "#a855f7",
+        ];
+        var curr_col = 0;
+
+        btn.addEventListener("click", () => {
+          ts.innerHTML = new Date();
+          ts.style.backgroundColor = colorList[curr_col];
+          curr_col = (curr_col + 1) % 7;
+        });
+      </script>
+      <hr />
+
+      <section id="sec2">
+        <button id="ts-btn2" class="btn">Editors</button>
+      </section>
+      <script>
+        var sec2 = document.querySelector("#sec2");
+        var btn = document.querySelector("#ts-btn2");
+
+        var isOpen = false;
+
+        const newDiv = document.createElement("div");
+
+        const members = [
+          "62010787 Wongvarit Pancharoen",
+          "62010808 Warit Powtongsook",
+          "62010152 Chanawee Chanechatchawan",
+          "62010462 Naphapron Tangjai",
+        ];
+        for (var i = 0; i < 4; ++i) {
+          const newContent = document.createElement("p");
+          newContent.innerHTML = members[i];
+          newContent.classList.add("member-text");
+          newDiv.appendChild(newContent);
+        }
+
+        btn.addEventListener("click", () => {
+          if (isOpen) {
+            sec2.removeChild(newDiv);
+          } else {
+            sec2.appendChild(newDiv);
+          }
+          isOpen = !isOpen;
+        });
+      </script>
+      <hr />
+
+      <section id="sec3">
+        <button id="ts-btn3" class="btn">Picture</button>
+        <img
+          id="img"
+          src="https://glairly.github.io/img/oak.a9bc6269.jpg"
+          class="w-64 h-64 m-4 rounded-lg"
+        />
+      </section>
+      <script>
+        var img = document.querySelector("#img");
+        var btn = document.querySelector("#ts-btn3");
+
+        const srcs = [
+          "https://glairly.github.io/img/oak.a9bc6269.jpg",
+          "https://avatars.githubusercontent.com/u/60293343?s=400&u=cd1a4b4ae662caca0e0471777195d490c6c9739b&v=4",
+          "https://avatars.githubusercontent.com/u/66435778?s=400&u=d72130dc5ae926a26cecd51b771880c7623e0b9a&v=4",
+          "https://raw.githubusercontent.com/firstchnn/Software-Studio/main/Lab3/assets/img/jan.jpg",
+        ];
+        var curr_img = 0;
+
+        btn.addEventListener("click", () => {
+          curr_img = (curr_img + 1) % 4;
+          img.src = srcs[curr_img];
+        });
+      </script>
+      <hr />
+    </main>
+  </body>
+</html>
