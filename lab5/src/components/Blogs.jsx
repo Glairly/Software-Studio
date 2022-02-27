@@ -35,7 +35,7 @@ const Blogs = ({ data }) => {
   const voteNumColor = (vote) => {
     if (vote <= 0) {
       return "text-gray-400";
-    } else if (vote === 9) {
+    } else if (vote === 4) {
       return "text-green-600";
     } else return "";
   };
