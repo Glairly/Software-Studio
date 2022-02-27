@@ -14,7 +14,9 @@ function App() {
       </nav>
       <main className='flex-grow bg-gray-100'>
         <section className='bg-transparent'>
-          {database.map(el => <Blogs data={el} key={el.name} />)}
+          {
+            database.map(el => <Blogs data={el} key={el.name} />)
+          }
         </section>
         <footer className="footer">
           ce.kmitl all rights reserved & copyright 2022

@@ -47,7 +47,12 @@ const Blogs = ({ data }) => {
       style={{ height: "calc(100vh - 2rem)" }}
     >
       <div className="flex flex-col items-center text-xl py-4 pr-4 border-gray-200 border-r">
-        <a className="border-b border-gray-200 mb-4 pb-4" href={data.linkedin} target="_blank" rel="noreferrer">
+        <a
+          className="border-b border-gray-200 mb-4 pb-4"
+          href={data.linkedin}
+          target="_blank"
+          rel="noreferrer"
+        >
           <figure>
             <img
               src={data.pictureUrl}
@@ -56,7 +61,6 @@ const Blogs = ({ data }) => {
             />
           </figure>
         </a>
-
 
         <div className="icon-wrapper">
           <i
