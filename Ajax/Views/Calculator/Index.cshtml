@@ -1,0 +1,79 @@
+@{
+    ViewData["Title"] = "Calculator";
+}
+
+@* @using (Html.BeginForm())
+    {
+    <h1>Calculator</h1>
+    <label>Num1</label>
+    <input id="inp1" name="num1"></input>
+    <select name="operand" id="cars">
+    <option value="0">+</option>
+    <option value="1">-</option>
+    <option value="2">*</option>
+    <option value="3">/</option>
+    </select>
+    <label>Num2</label>
+    <input id="inp2" name="num2"></input>
+    <button id="submit" type="submit">Calculate</button>
+    <p id="result">Result : @ViewBag.Result</p>
+    } *@
+
+<h1>Calculator</h1>
+<label>Num1</label>
+<input id="inp1" name="num1"></input>
+<select name="operand" id="operand">
+    <option value="0">+</option>
+    <option value="1">-</option>
+    <option value="2">*</option>
+    <option value="3">/</option>
+</select>
+<label>Num2</label>
+<input id="inp2" name="num2"></input>
+<button id="submit" type="submit">Calculate</button>
+<br>
+Result : <p id="result">@ViewBag.Result</p>
+</br>
+
+@section Scripts{
+<script>
+    $(() => {
+        $("#submit").click(() => {
+            const inp1 = document.querySelector("#inp1").value
+            const inp2 = document.querySelector("#inp2").value
+            const operand = document.querySelector("#operand").value
+            const submitBtn = document.querySelector("#submit")
+            const result = document.querySelector("#result")
+
+            const payload = {
+                'num1': inp1 || "0",
+                'num2': inp2 || "0",
+                'operand': operand || "0"
+            };
+
+            console.log(payload)
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("Calculate")',
+                data: payload,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (e) {
+                    // alert("Data has been added successfully.");  
+                    console.log(e)
+                    result.innerHTML = e.result
+                },
+                error: function () {
+                    alert("Error while inserting data");
+                }
+            });
+            return false;
+        });
+    });
+
+
+
+
+</script>
+}

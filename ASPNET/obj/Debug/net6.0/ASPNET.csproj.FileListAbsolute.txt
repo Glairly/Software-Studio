@@ -1,0 +1,15 @@
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\bin\Debug\net6.0\ASPNET.exe
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\bin\Debug\net6.0\ASPNET.deps.json
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\bin\Debug\net6.0\ASPNET.runtimeconfig.json
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\bin\Debug\net6.0\ASPNET.dll
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\bin\Debug\net6.0\ASPNET.pdb
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\obj\Debug\net6.0\ASPNET.csproj.AssemblyReference.cache
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\obj\Debug\net6.0\ASPNET.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\obj\Debug\net6.0\ASPNET.AssemblyInfoInputs.cache
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\obj\Debug\net6.0\ASPNET.AssemblyInfo.cs
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\obj\Debug\net6.0\ASPNET.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\obj\Debug\net6.0\ASPNET.dll
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\obj\Debug\net6.0\refint\ASPNET.dll
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\obj\Debug\net6.0\ASPNET.pdb
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\obj\Debug\net6.0\ASPNET.genruntimeconfig.cache
+C:\Users\USER\Desktop\grade15\SWSTU\ASPNET\obj\Debug\net6.0\ref\ASPNET.dll
