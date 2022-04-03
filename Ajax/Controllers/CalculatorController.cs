@@ -15,9 +15,9 @@ public class CalculatorController : Controller
         Console.WriteLine(num1);
         Console.WriteLine(num2);
         Console.WriteLine(operand);
-        int n1 = int.Parse(num1);
-        int n2 = int.Parse(num2);
-        int result = 0;
+        float n1 = float.Parse(num1);
+        float n2 = float.Parse(num2);
+        float result = 0;
 
         switch(operand) {
             case "0":
