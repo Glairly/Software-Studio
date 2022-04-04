@@ -2,42 +2,123 @@
     ViewData["Title"] = "Calculator";
 }
 
-@* @using (Html.BeginForm())
-    {
-    <h1>Calculator</h1>
-    <label>Num1</label>
-    <input id="inp1" name="num1"></input>
-    <select name="operand" id="cars">
-    <option value="0">+</option>
-    <option value="1">-</option>
-    <option value="2">*</option>
-    <option value="3">/</option>
-    </select>
-    <label>Num2</label>
-    <input id="inp2" name="num2"></input>
-    <button id="submit" type="submit">Calculate</button>
-    <p id="result">Result : @ViewBag.Result</p>
-    } *@
+<style>
+    .calculator-wrapper {
+        border-radius: 2rem;
+        background: #222;
+        width: calc(6rem * 4 + 2.5px * 5);
+        border: 0.33rem solid black;
+    }
 
-<h1>Calculator</h1>
-<label>Num1</label>
-<input id="inp1" name="num1"></input>
-<select name="operand" id="operand">
-    <option value="0">+</option>
-    <option value="1">-</option>
-    <option value="2">*</option>
-    <option value="3">/</option>
-</select>
-<label>Num2</label>
-<input id="inp2" name="num2"></input>
-<button id="submit" type="submit">Calculate</button>
-<br>
-Result : <p id="result">@ViewBag.Result</p>
-</br>
+    .calculator-title {
+        color: white;
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+    #content { 
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+    }
+
+    #display {
+        font-size: 3rem;
+        padding: 10px;
+        height: 10rem;
+        padding-bottom: 2px;
+        background: white;
+        display: flex;
+        flex-direction : column;
+        justify-items: end;
+        align-items: end;
+
+    }
+
+    .display-input {
+        width: 100%;
+        text-decoration: none;
+        outline: none;
+        border: none;
+        text-align: right;
+        flex-grow: 1;
+        font-weight: bold;
+    }
+
+    #buffer {
+        font-size : 2rem !important;
+        color : gray;
+    }
+
+    .operand-wrapper, .numpad-wrapper {
+        margin-top : 10px;
+        margin-bottom : 10px;
+        display : grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+
+    .operand-btn, .num-btn {
+        color : white;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        font-size: 2rem;
+        height: 4rem;
+        width: 6rem;
+        background: gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2.5px;
+    }
+
+    .operand-btn {
+        background: orange;
+        color: #222;
+    }
+
+    .operand {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .operand-btn span {
+        line-height: 1rem;
+        text-align: start;
+        height: auto;
+        text-align:start;
+         vertical-align: super;
+    }
+
+
+</style>
+
+
+
+
+<div class="calculator-wrapper">
+    <h1 class="calculator-title">Calculator</h1>
+    <div id="display">
+        <input class="display-input" name="num1" id="buffer" value=""></input>
+        <input class="display-input" name="num2" value="0" id="numDisplay"></input>
+    </div>
+
+    <section id="content">
+         
+        <div class="operand-wrapper">
+        </div>
+
+        @* <div class="operand-wrapper">
+        </div> *@
+
+    </section>
+
+</div>
 
 @section Scripts{
 <script>
-    $(() => {
+    /* $(() => {
         $("#submit").click(() => {
             const inp1 = document.querySelector("#inp1").value
             const inp2 = document.querySelector("#inp2").value
@@ -70,8 +151,114 @@ Result : <p id="result">@ViewBag.Result</p>
             });
             return false;
         });
-    });
+    }); */
 
+    
+    $(() => {
+        // const opWrapper = $(".operand-wrapper") 
+        const numWrapper = $(".operand-wrapper")
+
+        var num1 = ""
+        var num2 = ""
+        var op = ""
+
+        const renderDisplay = () => {
+            if(op) {
+                document.querySelector("#numDisplay").value = num2
+                document.querySelector("#buffer").value = `${num1}  ${op}`
+            }else {
+                 document.querySelector("#buffer").value = ""
+                 document.querySelector("#numDisplay").value = num1
+            }
+            
+        }
+
+        @* console.log(opWrapper) *@
+
+        @* const ops = ["CE","+","-","*","/","="] *@
+
+        const grids = [["ce","+","-","x"],["9","8","7","÷"],["6","5","4","%"],["3","2","1","c"],[".","0","00","="]]
+        var idx = 0;
+        for(let i = 0 ; i < grids.length; ++i) {
+            for(let j = 0; j < grids[i].length; ++j){
+                let val = grids[i][j]
+                let isNum = (val == "." ? 0: !isNaN(parseInt(val)))
+                const lab = `<label for="operand${idx}" class="${ isNum ? 'num':'operand'}-btn"   id="label-${idx}" ><span>${val}</span></label>`
+                @* const rad = `<input type="radio" style="display:none;" name="operand${idx}" value="${val}"   id="btn-${idx}" />` *@
+                numWrapper.append(`<div class="operand">${lab}</div>`);
+                
+                $(`#label-${idx}`).click((e) => {
+
+                    switch(val) {
+                        case "=":
+                            if(!op) break
+                       
+
+                            const payload = {
+                                'num1': num1 || "0",
+                                'num2': num2 || "0",
+                                'operand': op 
+                            };
+
+                            num1 = "";
+                            num2 = "";
+                            op = "";
+
+                            console.log(payload)
+                            $.ajax({
+                                type: "GET",
+                                url: '@Url.Action("Calculate")',
+                                data: payload,
+                                dataType: "json",
+                                contentType: "application/json; charset=utf-8",
+                                success: function (e) {
+                                    // alert("Data has been added successfully.");  
+                                    console.log(e)
+                                    num1 = e.result
+                                    renderDisplay();
+                                },
+                                error: function () {
+                                    alert("Error while Calculate data");
+                                }
+                            });
+                    
+                        break;
+                        case "c":
+                            if(!op) {
+                                num1 = num1.slice(0,-1)
+                            }else {
+                                num2 = num2.slice(0,-1)
+                            }
+                        break;
+                        case "ce":
+                            if(num2) num2 = ""
+                            else if (op) op = ""
+                            else if (num1) num1 = ""
+                        break;
+                        default:
+                            if(isNum || val == "."){
+                                    if(!op) {
+                                        if(val == "." && num1.split(".").length > 1) return
+                                        num1 = num1 + val
+
+                                    }else {
+                                        if(val == "." && num2.split(".").length > 1) return
+                                        num2 = num2 + val
+                                    }
+                            }else {
+                                op = val
+                            }
+                        break;
+                    }
+                    renderDisplay();
+                })
+                idx++;
+            }
+        }
+
+    
+    })
+ 
 
 
 

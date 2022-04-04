@@ -20,17 +20,24 @@ public class CalculatorController : Controller
         float result = 0;
 
         switch(operand) {
-            case "0":
+            case "+":
                 result = n1 + n2;
             break;
-            case "1":
+            case "-":
                 result = n1 - n2;
             break;
-            case "2":
+            case "x":
                 result = n1 * n2;
             break;
-            case "3":
+            case "÷":
                 result = n1 / n2;
+            break;
+            case "%":
+                try {
+                    result = n1 % n2;
+                }catch(Exception e){
+                    result = n1;
+                }
             break;
             default:
                 result = 0;
