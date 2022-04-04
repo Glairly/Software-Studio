@@ -30,7 +30,11 @@ public class CalculatorController : Controller
                 result = n1 * n2;
             break;
             case "÷":
-                result = n1 / n2;
+                if(n2 > 0){
+                     result = n1 / n2;
+                }else {
+                    result = n1;
+                }
             break;
             case "%":
                 try {
@@ -46,7 +50,7 @@ public class CalculatorController : Controller
 
         // ViewBag.Result = result;
         // return View();
-        return Json(new { result = result});
+        return Json(new { result = result });
     }
 
 
