@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "8MuI3NHF6q2t1GTQxw105nuN93LeVIghdKdiatdVCQwKd1J4mBLaiy82+s6ENagBTIVdIqy2PXM2UL9KgijB4g==",
+  "dgSpecHash": "d0uaDuu2ya2dhZCik33ZTGKK87uOkGwsM3bq7M3Ij0HO2Qr2MYEQA1Au0toD+1lfZw8aq5lSlopO/LCS6ULRqQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\USER\\Desktop\\grade15\\SWSTU\\Final_assignment\\backend\\backend.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\USER\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

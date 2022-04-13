@@ -25,9 +25,7 @@ public class HomeController : Controller
 
     [HttpGet]
     public JsonResult Test(){
-
         return Json(new  { result = true });
-        
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
