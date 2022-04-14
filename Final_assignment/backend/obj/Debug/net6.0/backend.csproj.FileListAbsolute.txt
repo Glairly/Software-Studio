@@ -56,4 +56,7 @@ C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB
 C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Blog\comments.json
 C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Blog\index.json
 C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Blog\likes.json
-C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Redeem\index.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Blog\Redeems.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Redeem\item.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Redeem\redeemed.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Blog\Users.json
