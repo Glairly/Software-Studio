@@ -66,7 +66,7 @@ public class AuthController : Controller
     [HttpPost]
     public JsonResult Login(User item){
         // return Json(new {});
-        Console.WriteLine(item);
+        Console.WriteLine(item.Username);
         var user = UserContext.Users.get().FirstOrDefault(x => x.Username == item.Username);
         if(user != null) {
             if(user.Password == item.Password)
