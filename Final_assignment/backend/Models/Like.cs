@@ -3,40 +3,36 @@ using System.Text.Json.Serialization;
 
 namespace backend.Models
 {
-    public class TodoItem
+    public class Like
     {
         public long Id { get; set; }
-        public string? Name { get; set; }
-        public bool IsComplete { get; set; }
+        public long Blog { get; set; }
+        public String? Owner { get; set; }
     }
 
-    public struct Meta
-    {
-        public long recordNum { get; set; }
-    }
-    public class TodoCollection
+    public class LikeCollection
     {
         public Meta meta { get; set; }
-        public List<TodoItem> collection { get; set; }
+        public List<Like> collection { get; set; }
     }
 
 
-    public static class TodoItemContext
+    public static class LikeContext
     {
 
-        public static string jsonPath = "./DB/Index.json";
-        public static class Todos
+        public static string jsonPath = "./DB/Blog/Likes.json";
+        public static class Likes
         {
 
-            public static List<TodoItem> get()
+            public static List<Like> get()
             {
 
-                TodoCollection val = new TodoCollection();
+                LikeCollection val = new LikeCollection();
 
                 try
                 {
                     StreamReader sr = new StreamReader(jsonPath);
-                    val = JsonConvert.DeserializeObject<TodoCollection>(sr.ReadToEnd());
+                    val = JsonConvert.DeserializeObject<LikeCollection>(sr.ReadToEnd());
                     sr.Close();
                 }
                 catch (Exception e) { }
@@ -45,14 +41,14 @@ namespace backend.Models
                 return val.collection;
             }
 
-            public static List<TodoItem> add(TodoItem item)
+            public static List<Like> add(Like item)
             {
-                TodoCollection val = new TodoCollection();
+                LikeCollection val = new LikeCollection();
 
                 try
                 {
                     StreamReader sr = new StreamReader(jsonPath);
-                    val = JsonConvert.DeserializeObject<TodoCollection>(sr.ReadToEnd());
+                    val = JsonConvert.DeserializeObject<LikeCollection>(sr.ReadToEnd());
                     item.Id = val.meta.recordNum;
                     val.meta = new Meta() { recordNum = val.meta.recordNum + 1 };
                     val.collection.Add(item);
@@ -70,19 +66,18 @@ namespace backend.Models
 
             public static Boolean remove(long id)
             {
-                TodoCollection val = new TodoCollection();
+                LikeCollection val = new LikeCollection();
 
                 try
                 {
                     StreamReader sr = new StreamReader(jsonPath);
-                    val = JsonConvert.DeserializeObject<TodoCollection>(sr.ReadToEnd());
+                    val = JsonConvert.DeserializeObject<LikeCollection>(sr.ReadToEnd());
                     var idx = val.collection.FindIndex(x => x.Id == id);
                     val.collection.RemoveAt(idx);
                     sr.Close();
 
                     string json = JsonConvert.SerializeObject(val);
-                    System.IO.File.WriteAllText(jsonPath, json); 
-                    return true;
+                    System.IO.File.WriteAllText(jsonPath, json); return true;
                 }
                 catch (Exception e)
                 {
@@ -91,37 +86,35 @@ namespace backend.Models
 
             }
 
-            public static TodoItem update(TodoItem item)
-            {
-                TodoCollection val = new TodoCollection();
+            // public static Like update(Like item)
+            // {
+            //     LikeCollection val = new LikeCollection();
 
-                try
-                {
-                    StreamReader sr = new StreamReader(jsonPath);
-                    val = JsonConvert.DeserializeObject<TodoCollection>(sr.ReadToEnd());
-                    var obj = val.collection.FirstOrDefault(x => x.Id == item.Id);
-                    if (obj != null)
-                    {
-                        obj.Name = item.Name;
-                        obj.IsComplete = item.IsComplete;
-                    }
-                    sr.Close();
-                }
-                catch (Exception e) { }
+            //     try
+            //     {
+            //         StreamReader sr = new StreamReader(jsonPath);
+            //         val = JsonConvert.DeserializeObject<LikeCollection>(sr.ReadToEnd());
+            //         var obj = val.collection.FirstOrDefault(x => x.Id == item.Id);
+            //         if (obj != null)
+            //         {
+            //         }
+            //         sr.Close();
+            //     }
+            //     catch (Exception e) { }
 
-                string json = JsonConvert.SerializeObject(val);
-                System.IO.File.WriteAllText(jsonPath, json);
+            //     string json = JsonConvert.SerializeObject(val);
+            //     System.IO.File.WriteAllText(jsonPath, json);
 
-                return item;
-            }
+            //     return item;
+            // }
 
             public static Boolean init()
             {
                 try
                 { 
-                    TodoCollection val = new TodoCollection();
+                    LikeCollection val = new LikeCollection();
                     val.meta = new Meta() { recordNum = 0 };
-                    val.collection = new List<TodoItem>();
+                    val.collection = new List<Like>();
                     string json = JsonConvert.SerializeObject(val);
                     System.IO.File.WriteAllText(jsonPath, json);
                     return true;

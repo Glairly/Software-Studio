@@ -3,40 +3,41 @@ using System.Text.Json.Serialization;
 
 namespace backend.Models
 {
-    public class TodoItem
+    public class Blog
     {
         public long Id { get; set; }
-        public string? Name { get; set; }
-        public bool IsComplete { get; set; }
+        public long Owner { get; set; }
+        public List<String>? Tags { get; set; }
+
+        public string? Title { get; set; }
+        public string? Content { get; set; }
+        public string? Pictures { get; set; }
+
     }
 
-    public struct Meta
-    {
-        public long recordNum { get; set; }
-    }
-    public class TodoCollection
+    public class BlogCollection
     {
         public Meta meta { get; set; }
-        public List<TodoItem> collection { get; set; }
+        public List<Blog> collection { get; set; }
     }
 
 
-    public static class TodoItemContext
+    public static class BlogContext
     {
 
-        public static string jsonPath = "./DB/Index.json";
-        public static class Todos
+        public static string jsonPath = "./DB/Blog/Index.json";
+        public static class Blogs
         {
 
-            public static List<TodoItem> get()
+            public static List<Blog> get()
             {
 
-                TodoCollection val = new TodoCollection();
+                BlogCollection val = new BlogCollection();
 
                 try
                 {
                     StreamReader sr = new StreamReader(jsonPath);
-                    val = JsonConvert.DeserializeObject<TodoCollection>(sr.ReadToEnd());
+                    val = JsonConvert.DeserializeObject<BlogCollection>(sr.ReadToEnd());
                     sr.Close();
                 }
                 catch (Exception e) { }
@@ -45,14 +46,14 @@ namespace backend.Models
                 return val.collection;
             }
 
-            public static List<TodoItem> add(TodoItem item)
+            public static List<Blog> add(Blog item)
             {
-                TodoCollection val = new TodoCollection();
+                BlogCollection val = new BlogCollection();
 
                 try
                 {
                     StreamReader sr = new StreamReader(jsonPath);
-                    val = JsonConvert.DeserializeObject<TodoCollection>(sr.ReadToEnd());
+                    val = JsonConvert.DeserializeObject<BlogCollection>(sr.ReadToEnd());
                     item.Id = val.meta.recordNum;
                     val.meta = new Meta() { recordNum = val.meta.recordNum + 1 };
                     val.collection.Add(item);
@@ -70,19 +71,18 @@ namespace backend.Models
 
             public static Boolean remove(long id)
             {
-                TodoCollection val = new TodoCollection();
+                BlogCollection val = new BlogCollection();
 
                 try
                 {
                     StreamReader sr = new StreamReader(jsonPath);
-                    val = JsonConvert.DeserializeObject<TodoCollection>(sr.ReadToEnd());
+                    val = JsonConvert.DeserializeObject<BlogCollection>(sr.ReadToEnd());
                     var idx = val.collection.FindIndex(x => x.Id == id);
                     val.collection.RemoveAt(idx);
                     sr.Close();
 
                     string json = JsonConvert.SerializeObject(val);
-                    System.IO.File.WriteAllText(jsonPath, json); 
-                    return true;
+                    System.IO.File.WriteAllText(jsonPath, json); return true;
                 }
                 catch (Exception e)
                 {
@@ -91,19 +91,21 @@ namespace backend.Models
 
             }
 
-            public static TodoItem update(TodoItem item)
+            public static Blog update(Blog item)
             {
-                TodoCollection val = new TodoCollection();
+                BlogCollection val = new BlogCollection();
 
                 try
                 {
                     StreamReader sr = new StreamReader(jsonPath);
-                    val = JsonConvert.DeserializeObject<TodoCollection>(sr.ReadToEnd());
+                    val = JsonConvert.DeserializeObject<BlogCollection>(sr.ReadToEnd());
                     var obj = val.collection.FirstOrDefault(x => x.Id == item.Id);
                     if (obj != null)
                     {
-                        obj.Name = item.Name;
-                        obj.IsComplete = item.IsComplete;
+                        obj.Title = item.Title;
+                        obj.Content = item.Content;
+                        obj.Tags = item.Tags;
+                        obj.Pictures = item.Pictures;
                     }
                     sr.Close();
                 }
@@ -119,9 +121,9 @@ namespace backend.Models
             {
                 try
                 { 
-                    TodoCollection val = new TodoCollection();
+                    BlogCollection val = new BlogCollection();
                     val.meta = new Meta() { recordNum = 0 };
-                    val.collection = new List<TodoItem>();
+                    val.collection = new List<Blog>();
                     string json = JsonConvert.SerializeObject(val);
                     System.IO.File.WriteAllText(jsonPath, json);
                     return true;

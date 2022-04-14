@@ -4,11 +4,11 @@ using backend.Models;
 
 namespace backend.Controllers;
 
-public class TodoController : Controller
+public class CommentController : Controller
 {
-    private readonly ILogger<TodoController> _logger;
+    private readonly ILogger<CommentController> _logger;
 
-    public TodoController(ILogger<TodoController> logger)
+    public CommentController(ILogger<CommentController> logger)
     {
         _logger = logger;
     }
@@ -24,37 +24,37 @@ public class TodoController : Controller
     }
 
     public JsonResult List(){
-        return Json(new  { result = TodoItemContext.Todos.get() });
+        return Json(new  { result = CommentContext.Comments.get() });
     }
 
     [HttpGet]
     public JsonResult GetById(long id){
-        return Json(new  { result = TodoItemContext.Todos.get().FirstOrDefault(x => x.Id == id) });
+        return Json(new  { result = CommentContext.Comments.get().FirstOrDefault(x => x.Id == id) });
     }
 
     [HttpPost]
-    public JsonResult Add(TodoItem item){
+    public JsonResult Add(Comment item){
         // return Json(new {});
-        return Json(new  { result = TodoItemContext.Todos.add(item) });
+        return Json(new  { result = CommentContext.Comments.add(item) });
     }
 
     [HttpPost]
     public JsonResult Init(){
         // return Json(new {});
-        return Json(new  { result = TodoItemContext.Todos.init() });
+        return Json(new  { result = CommentContext.Comments.init() });
     }
 
     [HttpPut]
-    public JsonResult Update(TodoItem item){
+    public JsonResult Update(Comment item){
         // return Json(new {});
-        return Json(new  { result = TodoItemContext.Todos.update(item) });
+        return Json(new  { result = CommentContext.Comments.update(item) });
     }
 
     [HttpDelete]
     public JsonResult Delete(long id){
         Console.WriteLine(id);
         // return Json(new {});
-        return Json(new  { result = TodoItemContext.Todos.remove(id) });
+        return Json(new  { result = CommentContext.Comments.remove(id) });
     }
 
 }
