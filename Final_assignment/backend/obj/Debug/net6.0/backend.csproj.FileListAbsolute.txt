@@ -53,7 +53,7 @@ C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\obj\Debug\net6.0\re
 C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\obj\Debug\net6.0\backend.csproj.CopyComplete
 C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Index.json
-C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Index2.json
 C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Blog\comments.json
 C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Blog\index.json
 C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Blog\likes.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Debug\net6.0\DB\Redeem\index.json
