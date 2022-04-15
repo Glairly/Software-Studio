@@ -69,7 +69,7 @@ export default function Auth() {
           Community For a{" "}
           <span className="text-orange-600">Better Thailand</span>.
         </Typography>
-        {mode == "1" ? <IsLogin /> : <IsRegister />}
+        {mode === "1" ? <IsLogin /> : <IsRegister />}
       </div>
     </>
   );

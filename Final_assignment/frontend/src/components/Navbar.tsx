@@ -27,6 +27,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import PersonIcon from "@mui/icons-material/Person";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import LogoutIcon from "@mui/icons-material/Logout";
+import RedeemIcon from '@mui/icons-material/Redeem';
 import { Divider } from "@mui/material";
 
 interface NavbarProps {
@@ -63,6 +64,8 @@ const Navbar = (props: NavbarProps) => {
   const pages = [
     { icon: <AddCircleIcon />, label: "สร้างกระทู้" },
     { icon: <CalendarTodayIcon />, label: "กิจกรรม" },
+    { icon: <RedeemIcon />, label: "แลกแต้ม" },
+
   ];
 
   const settings = [
@@ -138,7 +141,7 @@ const Navbar = (props: NavbarProps) => {
   };
 
   return (
-    <AppBar position="static" color="inherit">
+    <AppBar position="static" color="inherit" >
       <Toolbar>
         <Typography
           variant="h6"
@@ -197,6 +200,7 @@ const Navbar = (props: NavbarProps) => {
                 xs: "none",
                 md: "flex",
               },
+              justifyContent : "end"
             }}
           >
             {pages.map((page) => (
