@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectUser, setUser, role, User } from "./authSlice";
 
 import axios from "axios";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 export default function Auth() {
   const user = useAppSelector(selectUser);
@@ -34,24 +35,55 @@ export default function Auth() {
 
   return (
     <>
-      <div className="flex flex-col w-96 shadow rounded-xl p-6 mx-auto my-10">
-        <p className="font-bold text-lg my-4">Login</p>
-        <label htmlFor="username">Username</label>
-        <input
-          name="username"
-          className="border border-black"
-          onChange={(e) => setUsername(e.target.value)}
-        ></input>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          className="border border-black"
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
-        <button className="p-2 bg-slate-400 rounded mt-10" onClick={() => login()}>
-          login
-        </button>
+      <div className="h-screen max-h-screen flex flex-col items-center justify-center pb-12">
+        <Typography
+          variant="h2"
+          gutterBottom
+          component="div"
+          className="text-orange-600 font-bold"
+        >
+          Pra-song
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          gutterBottom
+          component="div"
+          className="text-slate-600"
+        >
+          Community For a{" "}
+          <span className="text-orange-600">Better Thailand</span>.
+        </Typography>
+        <div className="flex flex-col w-96 h-auto shadow-xl shadow-orange-600/20 rounded-xl p-6 mt-10">
+          <p className="font-bold text-xl">Join Us.</p>
+          <div className="my-4"></div>
+          <div className="flex flex-col text-left">
+            <TextField
+              id="filled-basic"
+              label="Username"
+              color="warning"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+
+            <div className="my-4"></div>
+
+            <TextField
+              id="filled-basic"
+              label="Password"
+              color="warning"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div className="my-4"></div>
+            <Button
+              variant="contained"
+              color="warning"
+              size="large"
+              onClick={() => login()}
+            >
+              <p className="text-xl">Login</p>
+            </Button>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -30,7 +30,6 @@ function App() {
 
   return (
     <div className="App">
-      {JSON.stringify(user)}
       {user.username !== "" ? <AuthApp /> : <UnAuthApp />}
     </div>
   );

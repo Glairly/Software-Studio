@@ -5,6 +5,9 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import "../css/Navbar.css";
 import { selectUser, setUser, removeUser, role } from "../features/auth/authSlice";
 
+import * as Mui from '@mui/material'
+
+
 interface NavbarProps {
   isAuth?: Boolean;
 }
@@ -31,13 +34,13 @@ const Navbar = (props: NavbarProps) => {
     return (
       <>
         <div className="flex flew-row">
-          <button
+          <Mui.Button
             onClick={() => {
               dispatch(removeUser());
             }}
           >
             Logout
-          </button>
+          </Mui.Button>
         </div>
       </>
     );
@@ -46,7 +49,7 @@ const Navbar = (props: NavbarProps) => {
 
   return (
     <nav>
-      <div>Logo</div>
+      <div>Pra-song</div>
       {/* spacer */}
       <div className="flex-grow"></div>
       <div>
