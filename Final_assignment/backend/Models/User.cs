@@ -4,8 +4,9 @@ using System.Text.Json.Serialization;
 namespace backend.Models
 {
     public enum role {
+        CLIENT,
         ADMIN,
-        CLIENT
+         
     }
     public class User
     {
@@ -15,6 +16,8 @@ namespace backend.Models
         public String? Password { get; set; }
         public role Role { get; set;}
         public long Point { get; set; }
+        public String? Picture { get; set; }
+
     }
 
     public class UserCollection
@@ -107,6 +110,7 @@ namespace backend.Models
                         obj.Name = item.Name;
                         obj.Role = item.Role;
                         obj.Point = item.Point;
+                        obj.Picture = item.Picture;
                     }
                     sr.Close();
                 }

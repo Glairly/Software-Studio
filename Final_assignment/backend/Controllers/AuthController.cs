@@ -35,7 +35,9 @@ public class AuthController : Controller
     [HttpPost]
     public JsonResult Add(User item){
         // return Json(new {});
-        return Json(new  { result = UserContext.Users.add(item) });
+        var isExist = UserContext.Users.get().FirstOrDefault(x => x.Username == item.Username);
+        if(isExist != null) return Json(new { result = false, message = "User is already exist with that username."});
+        return Json(new  { result = UserContext.Users.add(item).FirstOrDefault(x => x.Username == item.Username) });
     }
 
     [HttpPost]

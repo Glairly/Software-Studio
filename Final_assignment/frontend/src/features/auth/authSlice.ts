@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../app/store';
 
 export enum role {
+  CLIENT,
   ADMIN,
-  CLIENT
 }
 
 export interface User {
