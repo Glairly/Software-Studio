@@ -8,11 +8,12 @@ export enum role {
 
 export interface User {
   id : Number,
-  name : String,
-  username : String,
-  password : String,
+  name : string,
+  username : string,
+  password : string,
   role : role,
   point : Number,
+  picture : string
 }
 
 export interface AuthState {
@@ -28,6 +29,7 @@ const initialState: AuthState = {
     password : "",
     role : role.CLIENT,
     point : 0,
+    picture : ""
   }
 };
 
