@@ -7,11 +7,11 @@ namespace backend.Models
     {
         public long Id { get; set; }
         public long Owner { get; set; }
-        public List<String>? Tags { get; set; }
+        public string? Tags { get; set; }
 
         public string? Title { get; set; }
         public string? Content { get; set; }
-        public string? Pictures { get; set; }
+        public string? Picture { get; set; }
 
     }
 
@@ -105,7 +105,7 @@ namespace backend.Models
                         obj.Title = item.Title;
                         obj.Content = item.Content;
                         obj.Tags = item.Tags;
-                        obj.Pictures = item.Pictures;
+                        obj.Picture = item.Picture;
                     }
                     sr.Close();
                 }

@@ -9,13 +9,10 @@ import { Fab } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 
+import { Blog } from "../../features/blog/blogSlice";
+
 interface FeaturedPostProps {
-  post: {
-    description: string;
-    image: string;
-    title: string;
-    link?: string;
-  };
+  post: Blog;
   vertical?: boolean;
 }
 
@@ -23,7 +20,7 @@ export default function BlogCard(props: FeaturedPostProps) {
   const { post, vertical } = props;
 
   return (
-    <Grid item xs={12} md={6}  >
+    <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
         <Card
           sx={{ display: "flex", flexDirection: vertical ? "column" : "row" }}
@@ -32,10 +29,10 @@ export default function BlogCard(props: FeaturedPostProps) {
             component="img"
             sx={{
               width: !vertical ? 200 : "auto",
-              height: vertical ? 480 : "auto",
+              height: vertical ? 480 : 260,
               display: { xs: "none", sm: "block" },
             }}
-            image={post.image}
+            image={post.blog.picture}
           />
           <CardContent
             sx={{
@@ -47,10 +44,10 @@ export default function BlogCard(props: FeaturedPostProps) {
             }}
           >
             <Typography component="h2" variant="h5">
-              {post.title}
+              {post.blog.title}
             </Typography>
             <Typography variant="subtitle1" paragraph>
-              {post.description}
+              {post.blog.content}
             </Typography>
             <div className="flex-grow"></div>
             <Typography
@@ -68,13 +65,13 @@ export default function BlogCard(props: FeaturedPostProps) {
                   >
                     <FavoriteBorderOutlinedIcon color="error" />
                   </Fab>
-                  <Typography sx={{ mt: 1 }}>1k</Typography>
+                  <Typography sx={{ mt: 1 }}>{post.likes || 0}</Typography>
                 </Grid>
                 <Grid item>
                   <Fab size="small" sx={{ background: "white !important" }}>
                     <ChatBubbleOutlineRoundedIcon color="info" />
                   </Fab>
-                  <Typography sx={{ mt: 1 }}>1k</Typography>
+                  <Typography sx={{ mt: 1 }}>{post.comment || 0}</Typography>
                 </Grid>
               </Grid>
             </Typography>

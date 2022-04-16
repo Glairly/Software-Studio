@@ -1,26 +1,35 @@
-import { configureStore, ThunkAction, Action, combineReducers, getDefaultMiddleware } from '@reduxjs/toolkit';
-import authSlice from '../features/auth/authSlice';
-import counterReducer from '../features/counter/counterSlice';
-import { persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import {
+  configureStore,
+  ThunkAction,
+  Action,
+  combineReducers,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit";
+import authSlice from "../features/auth/authSlice";
+import blogSlice from "../features/blog/blogSlice";
+import counterReducer from "../features/counter/counterSlice";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const reducers = combineReducers({
   counter: counterReducer,
-  auth : authSlice
-})
+  auth: authSlice,
+  blog: blogSlice,
+});
 
 const persistConfig = {
-  key: 'root',
-  storage
+  key: "root",
+  storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware : getDefaultMiddleware => getDefaultMiddleware({
-    serializableCheck : false,
-  })
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type AppDispatch = typeof store.dispatch;

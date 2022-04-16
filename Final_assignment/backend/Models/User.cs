@@ -30,7 +30,7 @@ namespace backend.Models
     public static class UserContext
     {
 
-        public static string jsonPath = "./DB/Blog/Users.json";
+        public static string jsonPath = "./DB/Users.json";
         public static class Users
         {
 

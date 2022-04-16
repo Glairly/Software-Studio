@@ -8,8 +8,12 @@ import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import BrunchDiningIcon from "@mui/icons-material/BrunchDining";
 import BlogCard from "./BlogCard";
+import { useAppSelector } from "../../app/hooks";
+import { selectBlog } from "../../features/blog/blogSlice";
 
 export default function Catagory() {
+  const blogs = useAppSelector(selectBlog);
+
   const catalog = [
     {
       icon: <TempleBuddhistIcon color="warning" />,
@@ -34,7 +38,7 @@ export default function Catagory() {
         {/* หมวดหมู่ */}
         กระทู้ทั้งหมด
       </Typography>
-      <Divider sx={{ mb:4 }} />
+      <Divider sx={{ mb: 4 }} />
       <Box>
         {/* <Grid
           container
@@ -55,16 +59,7 @@ export default function Catagory() {
           justifyContent="center"
           alignItems="start"
         >
-          <BlogCard
-            post={{
-              description: "ABC",
-              image:
-                "https://i.pinimg.com/564x/3e/7a/cc/3e7acc5e6087e0387842af21ba061472.jpg",
-              title: "Title",
-              link: "",
-            }}
-            vertical={true}
-          />
+          <BlogCard post={blogs[0]} vertical={true} />
           <Grid
             item
             container
@@ -74,33 +69,9 @@ export default function Catagory() {
             spacing={2}
             xs={6}
           >
-            <BlogCard
-              post={{
-                description: "ABC",
-                image:
-                  "https://i.pinimg.com/564x/3e/7a/cc/3e7acc5e6087e0387842af21ba061472.jpg",
-                title: "Title",
-                link: "",
-              }}
-            />
-            <BlogCard
-              post={{
-                description: "ABC",
-                image:
-                  "https://i.pinimg.com/564x/3e/7a/cc/3e7acc5e6087e0387842af21ba061472.jpg",
-                title: "Title",
-                link: "",
-              }}
-            />
-            <BlogCard
-              post={{
-                description: "ABC",
-                image:
-                  "https://i.pinimg.com/564x/3e/7a/cc/3e7acc5e6087e0387842af21ba061472.jpg",
-                title: "Title",
-                link: "",
-              }}
-            />
+            {blogs.slice(1, 1 + 3).map((el) => (
+              <BlogCard post={el} />
+            ))}
           </Grid>
         </Grid>
       </Box>

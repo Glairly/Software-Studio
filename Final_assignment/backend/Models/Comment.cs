@@ -7,6 +7,8 @@ namespace backend.Models
     {
         public long Id { get; set; }
         public long Blog { get; set; }
+        public long Owner { get; set; }
+
         public String? Content { get; set; }
     }
 
