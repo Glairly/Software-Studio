@@ -1,13 +1,14 @@
 import React from "react";
 import { useAppSelector } from "../app/hooks";
 import { selectUser } from "../features/auth/authSlice";
-import { Paper, Button, Container, Grid, Typography } from "@mui/material";
+import { Paper, Button, Container, Grid, Typography, Divider } from "@mui/material";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
 import Navbar from "../components/Navbar";
 import BlogCard from "../components/Blog/BlogCard";
+import Catagory from "../components/Blog/Catagory";
 
 export default function Home() {
   const user = useAppSelector(selectUser);
@@ -30,7 +31,7 @@ export default function Home() {
   return (
     <>
       <Navbar isAuth={!!user.username} />
-      <Container sx={{ mt: 4 }}>
+      <Container sx={{ p:4 }}>
         <Carousel showThumbs={false} autoPlay={true}>
           {carousels.map((el) => (
             <div
@@ -43,9 +44,10 @@ export default function Home() {
           ))}
         </Carousel>
         <div className="text-left">
-          <Typography variant="h4" sx={{ my: 4 }}>
+          <Typography variant="h4" sx={{ mt: 4 }}>
             กระทู้ยอดนิยม
           </Typography>
+          <Divider sx={{ mb:4 }} />
           <Grid container spacing={4}>
             <BlogCard
               post={{
@@ -67,30 +69,8 @@ export default function Home() {
             />
           </Grid>
         </div>
-        <div className="text-left">
-          <Typography variant="h4" sx={{ my: 4 }}>
-            กระทู้ยอดนิยม
-          </Typography>
-          <Grid container spacing={4}>
-            <BlogCard
-              post={{
-                description: "ABC",
-                image:
-                  "https://i.pinimg.com/564x/3e/7a/cc/3e7acc5e6087e0387842af21ba061472.jpg",
-                title: "Title",
-                link: "",
-              }}
-            />
-            <BlogCard
-              post={{
-                description: "ABC",
-                image:
-                  "https://i.pinimg.com/564x/3e/7a/cc/3e7acc5e6087e0387842af21ba061472.jpg",
-                title: "Title",
-                link: "",
-              }}
-            />
-          </Grid>
+        <div>
+          <Catagory />
         </div>
       </Container>
     </>
