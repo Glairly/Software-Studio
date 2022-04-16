@@ -15,7 +15,7 @@ interface BlogProps {
   blogs: Blog[];
 }
 
-export default function Catagory(props: BlogProps) {
+export default function BlogAll(props: BlogProps) {
   const { blogs } = props;
 
   const catalog = [
@@ -63,17 +63,15 @@ export default function Catagory(props: BlogProps) {
           justifyContent="center"
           alignItems="start"
         >
-          {blogs.length ? <BlogCard post={blogs[0]} vertical={true} /> : ""}
           <Grid
             item
             container
-            direction="column"
+            direction="row"
             justifyContent="center"
             alignItems="stretch"
             spacing={2}
-            xs={6}
           >
-            {blogs.slice(1, 1 + 3).map((el) => (
+            {blogs.map((el) => (
               <BlogCard post={el} key={el.blog.id} />
             ))}
           </Grid>

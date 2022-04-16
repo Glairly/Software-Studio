@@ -24,9 +24,10 @@ public class BlogController : Controller
         return Json(new { result = true });
     }
 
+    [HttpGet]
     public JsonResult List()
     {
-        
+
         var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner != 0);
         var res = new List<object>();
         foreach (var blog in blogs){
@@ -37,6 +38,23 @@ public class BlogController : Controller
             }).Value);
         }
         return Json(new { result = res });
+    }
+
+    [HttpGet]
+    public JsonResult ListByOwner(long id)
+    {
+        
+        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner == id);
+        var res = new List<object>();
+        foreach (var blog in blogs){
+            res.Add( Json(new {
+                blog = blog,
+                comments = CommentContext.Comments.get().FindAll(x => x.Blog == blog.Id).Count,
+                likes = LikeContext.Likes.get().FindAll(x => x.Blog == blog.Id).Count
+            }).Value);
+        }
+        return Json(new { result = res });
+
     }
 
     public JsonResult ListAnnoucement()

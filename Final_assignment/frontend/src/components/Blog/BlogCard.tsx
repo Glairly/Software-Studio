@@ -19,6 +19,8 @@ interface FeaturedPostProps {
 export default function BlogCard(props: FeaturedPostProps) {
   const { post, vertical } = props;
 
+ 
+
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
@@ -47,7 +49,7 @@ export default function BlogCard(props: FeaturedPostProps) {
               {post.blog.title}
             </Typography>
             <Typography variant="subtitle1" paragraph>
-              {post.blog.content}
+               <span dangerouslySetInnerHTML={{__html: post.blog.content }} ></span>
             </Typography>
             <div className="flex-grow"></div>
             <Typography
@@ -71,7 +73,7 @@ export default function BlogCard(props: FeaturedPostProps) {
                   <Fab size="small" sx={{ background: "white !important" }}>
                     <ChatBubbleOutlineRoundedIcon color="info" />
                   </Fab>
-                  <Typography sx={{ mt: 1 }}>{post.comment || 0}</Typography>
+                  <Typography sx={{ mt: 1 }}>{post.comments || 0}</Typography>
                 </Grid>
               </Grid>
             </Typography>

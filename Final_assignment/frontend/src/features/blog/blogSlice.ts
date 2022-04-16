@@ -1,18 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
-import { fetchAnnoucement, fetchBlog } from "./blogAPI";
+import { fetchAnnoucement, fetchBlog, postBlog } from "./blogAPI";
 
 export interface Blog {
   blog: {
     id: number;
-    owner: string;
+    owner: number;
     tags: string[];
     title: string;
     content: string;
     picture: string;
   };
   likes: any;
-  comment: any;
+  comments: any;
 }
 
 export interface BlogState {
@@ -35,6 +35,15 @@ export const fetchAnnoucements = createAsyncThunk(
   "blog/fetchAnnoucement",
   async () => {
     const res = await fetchAnnoucement();
+    if (res.status) return res.response;
+    else return false;
+  }
+);
+
+export const postBlogs = createAsyncThunk(
+  "blog/postBlog",
+  async (blog: FormData) => {
+    const res = await postBlog(blog);
     if (res.status) return res.response;
     else return false;
   }

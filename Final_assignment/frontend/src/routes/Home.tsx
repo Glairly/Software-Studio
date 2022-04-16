@@ -23,6 +23,7 @@ import {
   selectBlog,
   selectAnnoucement,
 } from "../features/blog/blogSlice";
+import BlogList from "../features/blog/Blog";
 
 export default function Home() {
   const user = useAppSelector(selectUser);
@@ -36,40 +37,10 @@ export default function Home() {
     dispatch(fetchAnnoucements());
   }, []);
 
-  const featured = useMemo(() => {
-    try {
-      return [...blogs]
-        .sort((a, b) => {
-          const _a = a.comment + a.likes;
-          const _b = b.comment + b.likes;
-          return _a > _b ? 1 : -1;
-        })
-        .slice(0, 2);
-    } catch (e) {
-      console.log(e);
-      return [];
-    }
-  }, [blogs]);
-
-  // const carousels = [
-  //   {
-  //     img: "https://i.pinimg.com/564x/2d/8d/a8/2d8da8b23268c2b3db8faac68493ec78.jpg",
-  //     label: "Event 1",
-  //   },
-  //   {
-  //     img: "https://i.pinimg.com/736x/e0/96/ba/e096ba2b671f4d0914f77082c1415f19.jpg",
-  //     label: "Event 2",
-  //   },
-  //   {
-  //     img: "https://i.pinimg.com/564x/3e/7a/cc/3e7acc5e6087e0387842af21ba061472.jpg",
-  //     label: "Event 3",
-  //   },
-  // ];
-
   return (
     <>
       {/* {JSON.stringify(featured)} */}
-      <Navbar isAuth={!!user.username} />
+      {/* <Navbar isAuth={!!user.username} /> */}
       <Container sx={{ p: 4 }}>
         <Carousel showThumbs={false} autoPlay={true} infiniteLoop>
           {annoucement.map((el) => (
@@ -130,20 +101,7 @@ export default function Home() {
             </Paper>
           ))}
         </Carousel>
-        <div className="text-left">
-          <Typography variant="h4" sx={{ mt: 4 }}>
-            กระทู้ยอดนิยม
-          </Typography>
-          <Divider sx={{ mb: 4 }} />
-          <Grid container spacing={4}>
-            {featured.map((el) => (
-              <BlogCard post={el} />
-            ))}
-          </Grid>
-        </div>
-        <div>
-          <Catagory />
-        </div>
+        <BlogList blogs={blogs} />
       </Container>
     </>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 import "../css/Navbar.css";
@@ -27,7 +27,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import PersonIcon from "@mui/icons-material/Person";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import LogoutIcon from "@mui/icons-material/Logout";
-import RedeemIcon from '@mui/icons-material/Redeem';
+import RedeemIcon from "@mui/icons-material/Redeem";
 import { Divider } from "@mui/material";
 
 interface NavbarProps {
@@ -60,24 +60,46 @@ const Navbar = (props: NavbarProps) => {
   };
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const pages = [
-    { icon: <AddCircleIcon />, label: "สร้างกระทู้" },
-    { icon: <CalendarTodayIcon />, label: "กิจกรรม" },
-    { icon: <RedeemIcon />, label: "แลกแต้ม" },
-
+    {
+      icon: <AddCircleIcon />,
+      label: "สร้างกระทู้",
+      fn: () => {
+        navigate("/addblog", { replace: true });
+      },
+    },
+    {
+      icon: <CalendarTodayIcon />,
+      label: "กิจกรรม",
+      fn: () => {
+        navigate("/profile", { replace: true });
+      },
+    },
+    {
+      icon: <RedeemIcon />,
+      label: "แลกแต้ม",
+      fn: () => {
+        navigate("/redeem", { replace: true });
+      },
+    },
   ];
 
   const settings = [
     {
       icon: <PersonIcon />,
       label: "โปรไฟล์",
-      fn: () => {},
+      fn: () => {
+        navigate("/profile", { replace: true });
+      },
     },
     {
       icon: <BookmarkIcon />,
       label: "กระทู้ของฉัน",
-      fn: () => {},
+      fn: () => {
+        navigate("/myblog", { replace: true });
+      },
     },
     {
       icon: <LogoutIcon />,
@@ -141,7 +163,7 @@ const Navbar = (props: NavbarProps) => {
   };
 
   return (
-    <AppBar position="static" color="inherit" >
+    <AppBar position="static" color="inherit">
       <Toolbar>
         <Typography
           variant="h6"
@@ -150,46 +172,10 @@ const Navbar = (props: NavbarProps) => {
           className="text-orange-600"
           sx={{ mr: 4, display: { xs: "none", md: "flex" } }}
         >
-          Pra-Song
+          <Link to="/">Pra-Song</Link>
         </Typography>
 
-        <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleOpenNavMenu}
-            color="inherit"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorElNav}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            open={Boolean(anchorElNav)}
-            onClose={handleCloseNavMenu}
-            sx={{
-              display: { xs: "block", md: "none" },
-            }}
-          >
-            {pages.map((page) => (
-              <MenuItem key={page.label} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">{page.label}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
-
+        {/* Action btn */}
         {!props.isAuth ? (
           <div className="flex-grow"></div>
         ) : (
@@ -200,13 +186,16 @@ const Navbar = (props: NavbarProps) => {
                 xs: "none",
                 md: "flex",
               },
-              justifyContent : "end"
+              justifyContent: "end",
             }}
           >
             {pages.map((page) => (
               <Button
                 key={page.label}
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                  page.fn();
+                  handleCloseNavMenu();
+                }}
                 sx={{
                   my: 2,
                   color: "black",
@@ -221,6 +210,7 @@ const Navbar = (props: NavbarProps) => {
           </Box>
         )}
 
+        {/* Auth */}
         {props.isAuth ? "" : <UnAuth />}
         <Box sx={{ flexGrow: 0, display: props.isAuth ? "block" : "none" }}>
           <Tooltip title="Open settings">

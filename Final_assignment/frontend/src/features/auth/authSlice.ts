@@ -7,12 +7,12 @@ export enum role {
 }
 
 export interface User {
-  id : Number,
+  id : number,
   name : string,
   username : string,
   password : string,
   role : role,
-  point : Number,
+  point : number,
   picture : string
 }
 
