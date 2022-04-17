@@ -6,7 +6,7 @@ export interface Blog {
   blog: {
     id: number;
     owner: number;
-    tags: string[];
+    tags: string;
     title: string;
     content: string;
     picture: string;

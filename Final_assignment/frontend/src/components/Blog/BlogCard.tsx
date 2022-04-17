@@ -23,7 +23,7 @@ export default function BlogCard(props: FeaturedPostProps) {
 
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href="#">
+      <CardActionArea component="a" href={`/viewblog?id=${post.blog.id as unknown as string}`} > 
         <Card
           sx={{ display: "flex", flexDirection: vertical ? "column" : "row" }}
         >

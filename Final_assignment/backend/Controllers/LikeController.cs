@@ -35,7 +35,9 @@ public class LikeController : Controller
     [HttpPost]
     public JsonResult Add(Like item){
         // return Json(new {});
-        return Json(new  { result = LikeContext.Likes.add(item) });
+        var isExist = LikeContext.Likes.get().Find(x => x.Owner == item.Owner && x.Blog == item.Blog);
+        if(isExist != null)  return Json(new  { result = false, message="Already done that." });
+        return Json(new  { result = LikeContext.Likes.add(item), message="Success." });
     }
 
     [HttpPost]
@@ -51,10 +53,12 @@ public class LikeController : Controller
     // }
 
     [HttpDelete]
-    public JsonResult Delete(long id){
-        Console.WriteLine(id);
+    public JsonResult Delete(Like item){
+
+        var isExist = LikeContext.Likes.get().Find(x => x.Owner == item.Owner && x.Blog == item.Blog);
         // return Json(new {});
-        return Json(new  { result = LikeContext.Likes.remove(id) });
+        if(isExist == null)  return Json(new  { result = false, message="Doesn't Exist." });
+        return Json(new  { result = LikeContext.Likes.remove(isExist.Id), message="Success." });
     }
 
 }
