@@ -19,11 +19,12 @@ interface FeaturedPostProps {
 export default function BlogCard(props: FeaturedPostProps) {
   const { post, vertical } = props;
 
- 
-
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href={`/viewblog?id=${post.blog.id as unknown as string}`} > 
+      <CardActionArea
+        component="a"
+        href={`/viewblog?id=${post.blog.id as unknown as string}`}
+      >
         <Card
           sx={{ display: "flex", flexDirection: vertical ? "column" : "row" }}
         >
@@ -48,8 +49,16 @@ export default function BlogCard(props: FeaturedPostProps) {
             <Typography component="h2" variant="h5">
               {post.blog.title}
             </Typography>
-            <Typography variant="subtitle1" paragraph>
-               <span dangerouslySetInnerHTML={{__html: post.blog.content }} ></span>
+            <Typography
+              variant="subtitle1"
+              sx={{ maxHeight: "100px" }}
+              paragraph
+            >
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: post.blog.content.slice(0, 200) + "...",
+                }}
+              ></span>
             </Typography>
             <div className="flex-grow"></div>
             <Typography

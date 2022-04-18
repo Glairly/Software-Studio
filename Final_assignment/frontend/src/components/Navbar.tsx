@@ -70,20 +70,20 @@ const Navbar = (props: NavbarProps) => {
         navigate("/addblog", { replace: true });
       },
     },
-    {
-      icon: <CalendarTodayIcon />,
-      label: "กิจกรรม",
-      fn: () => {
-        navigate("/profile", { replace: true });
-      },
-    },
-    {
-      icon: <RedeemIcon />,
-      label: "แลกแต้ม",
-      fn: () => {
-        navigate("/redeem", { replace: true });
-      },
-    },
+    // {
+    //   icon: <CalendarTodayIcon />,
+    //   label: "กิจกรรม",
+    //   fn: () => {
+    //     navigate("/profile", { replace: true });
+    //   },
+    // },
+    // {
+    //   icon: <RedeemIcon />,
+    //   label: "แลกแต้ม",
+    //   fn: () => {
+    //     navigate("/redeem", { replace: true });
+    //   },
+    // },
   ];
 
   const settings = [

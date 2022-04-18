@@ -8,6 +8,7 @@ import { selectUser } from "./features/auth/authSlice";
 import AddBlog from "./routes/AddBlog";
 import Home from "./routes/Home";
 import MyBlog from "./routes/MyBlog";
+import Profile from "./routes/Profile";
 import ViewBlog from "./routes/ViewBlog";
 
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/myblog" element={<MyBlog />} />
         <Route path="/addblog" element={<AddBlog />} />
         <Route path="/viewblog" element={<ViewBlog />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     );

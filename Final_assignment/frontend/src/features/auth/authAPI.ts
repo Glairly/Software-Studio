@@ -18,3 +18,22 @@ export function fetchUser(id: any) {
     }
   );
 }
+
+export function fetchUser2(id: any) {
+  return new Promise<{ status: Boolean; response: any }>(
+    async (resolve, reject) => {
+      try {
+        const res = await axios(
+          "https://localhost:7056/Auth/GetbyId2?id=" + id,
+          {
+            method: "GET",
+          }
+        );
+
+        resolve({ status: true, response: res.data.result });
+      } catch (e) {
+        reject({ status: false, response: "" });
+      }
+    }
+  );
+}

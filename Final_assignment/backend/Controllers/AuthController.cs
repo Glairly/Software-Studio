@@ -19,76 +19,112 @@ public class AuthController : Controller
     }
 
     [HttpGet]
-    public JsonResult Test(){
-        return Json(new  { result = true });
+    public JsonResult Test()
+    {
+        return Json(new { result = true });
     }
 
-    public JsonResult List(){
-        return Json(new  { result = UserContext.Users.get() });
+    public JsonResult List()
+    {
+        return Json(new { result = UserContext.Users.get() });
     }
 
     [HttpGet]
-    public JsonResult GetById(long id){
-        return Json(new  { result = UserContext.Users.get().FirstOrDefault(x => x.Id == id) });
+    public JsonResult GetById(long id)
+    {
+        return Json(new { result = UserContext.Users.get().FirstOrDefault(x => x.Id == id) });
     }
 
+
+    [HttpGet]
+    public JsonResult GetById2(long id)
+    {
+        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner == id);
+
+        if (blogs == null) return Json(new { result = false, message = "error" });
+        else
+        {
+            long comments = 0;
+            long likes = 0;
+            foreach (var blog in blogs)
+            {
+                comments += CommentContext.Comments.get().FindAll(x => x.Blog == blog.Id).Count;
+                likes += CommentContext.Comments.get().FindAll(x => x.Blog == blog.Id).Count;
+            }
+
+            return Json(new { result = new { user = UserContext.Users.get().FirstOrDefault(x => x.Id == id), comments = comments, likes = likes, blogs = blogs.Count } });
+        }
+
+    }
+
+
     [HttpPost]
-    public JsonResult Add(User item){
+    public JsonResult Add(User item)
+    {
         // return Json(new {});
         var isExist = UserContext.Users.get().FirstOrDefault(x => x.Username == item.Username);
-        if(isExist != null) return Json(new { result = false, message = "User is already exist with that username."});
-        return Json(new  { result = UserContext.Users.add(item).FirstOrDefault(x => x.Username == item.Username) });
+        if (isExist != null) return Json(new { result = false, message = "User is already exist with that username." });
+        return Json(new { result = UserContext.Users.add(item).FirstOrDefault(x => x.Username == item.Username) });
     }
 
     [HttpPost]
-    public JsonResult Init(){
+    public JsonResult Init()
+    {
         // return Json(new {});
-        return Json(new  { result = UserContext.Users.init() });
+        return Json(new { result = UserContext.Users.init() });
     }
 
     [HttpPut]
-    public JsonResult Block(long id,bool status){
+    public JsonResult Block(long id, bool status)
+    {
         // return Json(new {});
         var user = UserContext.Users.get().FirstOrDefault(x => x.Id == id);
-        if(user == null)  return Json(new  { result = false, message = "User not found." });
+        if (user == null) return Json(new { result = false, message = "User not found." });
         user.Disabled = status;
-        return Json(new  { result = UserContext.Users.update(user) });
+        return Json(new { result = UserContext.Users.update(user) });
     }
 
     [HttpPut]
-    public JsonResult Update(User item){
+    public JsonResult Update(User item)
+    {
         // return Json(new {});
-        return Json(new  { result = UserContext.Users.update(item) });
+        return Json(new { result = UserContext.Users.update(item) });
     }
 
     [HttpPut]
-    public JsonResult ChangePassword(User item){
+    public JsonResult ChangePassword(User item)
+    {
         // return Json(new {});
-        
-        return Json(new  { result = UserContext.Users.updatePassword(item) });
+
+        return Json(new { result = UserContext.Users.updatePassword(item) });
     }
 
     [HttpDelete]
-    public JsonResult Delete(long id){
+    public JsonResult Delete(long id)
+    {
         // return Json(new {});
-        return Json(new  { result = UserContext.Users.remove(id) });
+        return Json(new { result = UserContext.Users.remove(id) });
     }
 
     [HttpPost]
-    public JsonResult Login(User item){
+    public JsonResult Login(User item)
+    {
         // return Json(new {});
         Console.WriteLine(item.Username);
         var user = UserContext.Users.get().FirstOrDefault(x => x.Username == item.Username);
-        if(user != null) {
-            if(user.Disabled == true) return Json(new  { result = false, message = "User has been Blocked." });
-            else if(user.Password == item.Password)
-                return Json(new  { result = user, message = "Success." });
+        if (user != null)
+        {
+            if (user.Disabled == true) return Json(new { result = false, message = "User has been Blocked." });
+            else if (user.Password == item.Password)
+                return Json(new { result = user, message = "Success." });
             else
                 return Json(new { result = false, message = "Password is wrong." });
-        }else {
-            return Json(new  { result = false, message = "User not found." });
         }
-         
+        else
+        {
+            return Json(new { result = false, message = "User not found." });
+        }
+
     }
 
 }
