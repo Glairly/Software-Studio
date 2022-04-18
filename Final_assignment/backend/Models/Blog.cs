@@ -12,7 +12,7 @@ namespace backend.Models
         public string? Title { get; set; }
         public string? Content { get; set; }
         public string? Picture { get; set; }
-
+        public Boolean? Hidden { get; set; }
     }
 
     public class BlogCollection
@@ -106,6 +106,7 @@ namespace backend.Models
                         obj.Content = item.Content;
                         obj.Tags = item.Tags;
                         obj.Picture = item.Picture;
+                        obj.Hidden = item.Hidden;
                     }
                     sr.Close();
                 }

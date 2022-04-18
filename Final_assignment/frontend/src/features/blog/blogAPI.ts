@@ -111,3 +111,47 @@ export function removeLike(owner: any, blog: any) {
     }
   );
 }
+
+export function postComment(owner: any, blog: any, content: string) {
+  return new Promise<{ status: Boolean; response: any }>(
+    async (resolve, reject) => {
+      try {
+        var payload = new FormData();
+        payload.append("Blog", blog);
+        payload.append("Owner", owner);
+        payload.append("Content", content);
+        const res = await axios("https://localhost:7056/Comment/Add", {
+          method: "POST",
+          data: payload,
+        });
+
+        if (!res.data.result) throw new Error(res.data.message);
+        resolve({ status: true, response: res.data.result });
+      } catch (e) {
+        alert(e);
+        reject({ status: false, response: "" });
+      }
+    }
+  );
+}
+
+export function removeComment(id: any) {
+  return new Promise<{ status: Boolean; response: any }>(
+    async (resolve, reject) => {
+      try {
+        var payload = new FormData();
+        payload.append("Id", id);
+        const res = await axios("https://localhost:7056/Comment/Delete", {
+          method: "DELETE",
+          data: payload,
+        });
+
+        if (!res.data.result) throw new Error(res.data.message);
+        resolve({ status: true, response: res.data.result });
+      } catch (e) {
+        alert(e);
+        reject({ status: false, response: "" });
+      }
+    }
+  );
+}

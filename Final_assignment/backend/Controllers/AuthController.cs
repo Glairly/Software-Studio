@@ -47,6 +47,15 @@ public class AuthController : Controller
     }
 
     [HttpPut]
+    public JsonResult Block(long id,bool status){
+        // return Json(new {});
+        var user = UserContext.Users.get().FirstOrDefault(x => x.Id == id);
+        if(user == null)  return Json(new  { result = false, message = "User not found." });
+        user.Disabled = status;
+        return Json(new  { result = UserContext.Users.update(user) });
+    }
+
+    [HttpPut]
     public JsonResult Update(User item){
         // return Json(new {});
         return Json(new  { result = UserContext.Users.update(item) });
@@ -55,12 +64,12 @@ public class AuthController : Controller
     [HttpPut]
     public JsonResult ChangePassword(User item){
         // return Json(new {});
+        
         return Json(new  { result = UserContext.Users.updatePassword(item) });
     }
 
     [HttpDelete]
     public JsonResult Delete(long id){
-        Console.WriteLine(id);
         // return Json(new {});
         return Json(new  { result = UserContext.Users.remove(id) });
     }
@@ -71,7 +80,8 @@ public class AuthController : Controller
         Console.WriteLine(item.Username);
         var user = UserContext.Users.get().FirstOrDefault(x => x.Username == item.Username);
         if(user != null) {
-            if(user.Password == item.Password)
+            if(user.Disabled == true) return Json(new  { result = false, message = "User has been Blocked." });
+            else if(user.Password == item.Password)
                 return Json(new  { result = user, message = "Success." });
             else
                 return Json(new { result = false, message = "Password is wrong." });

@@ -27,8 +27,7 @@ public class BlogController : Controller
     [HttpGet]
     public JsonResult List()
     {
-
-        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner != 0);
+        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner != 0 && x.Hidden != true);
         var res = new List<object>();
         foreach (var blog in blogs){
             res.Add( Json(new {
@@ -44,7 +43,7 @@ public class BlogController : Controller
     public JsonResult ListByOwner(long id)
     {
         
-        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner == id);
+        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner == id );
         var res = new List<object>();
         foreach (var blog in blogs){
             res.Add( Json(new {
@@ -59,7 +58,7 @@ public class BlogController : Controller
 
     public JsonResult ListAnnoucement()
     {
-        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner == 0);
+        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner == 0 && x.Hidden != true);
         var res = new List<object>();
         foreach (var blog in blogs){
             res.Add( Json(new {
@@ -100,6 +99,15 @@ public class BlogController : Controller
     {
         // return Json(new {});
         return Json(new { result = BlogContext.Blogs.init() });
+    }
+
+    [HttpPut]
+    public JsonResult Hide(long id,bool status){
+        // return Json(new {});
+        var user = BlogContext.Blogs.get().FirstOrDefault(x => x.Id == id);
+        if(user == null)  return Json(new  { result = false, message = "User not found." });
+        user.Hidden = status;
+        return Json(new  { result = BlogContext.Blogs.update(user) });
     }
 
     [HttpPut]

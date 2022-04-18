@@ -1,1 +1,55 @@
-{"meta":{"recordNum":5},"collection":[{"Id":0,"Name":0,"Username":"AUsername","Password":"APassword","Role":0,"Point":0,"Picture":null},{"Id":1,"Name":0,"Username":"AUsername2","Password":"APassword","Role":0,"Point":0,"Picture":null},{"Id":2,"Name":0,"Username":"AUsername3","Password":"APassword","Role":0,"Point":0,"Picture":"https://scontent.fbkk7-3.fna.fbcdn.net/v/t1.6435-1/196687920_4110863922322659_5107938165452550483_n.jpg?stp=dst-jpg_p320x320&_nc_cat=108&ccb=1-5&_nc_sid=7206a8&_nc_eui2=AeHpDgcTxCqcxxPJD8o54FFrdARs15Y0EQx0BGzXljQRDGlYFbxjMeHUEl1PELMfc6F0RdDR3kBrRgZasWt8bEEL&_nc_ohc=X7akmYL1fzYAX-iZWwU&tn=J_HdblqpAZWqUZvt&_nc_ht=scontent.fbkk7-3.fna&oh=00_AT_L71yRysebegNuEmeYjatRiqpFuKF0IGnk2VAxjSFZaA&oe=627E59E6"},{"Id":3,"Name":0,"Username":"test","Password":"test","Role":0,"Point":0,"Picture":"https://scontent.fbkk7-3.fna.fbcdn.net/v/t1.6435-1/196687920_4110863922322659_5107938165452550483_n.jpg?stp=dst-jpg_p320x320&_nc_cat=108&ccb=1-5&_nc_sid=7206a8&_nc_eui2=AeHpDgcTxCqcxxPJD8o54FFrdARs15Y0EQx0BGzXljQRDGlYFbxjMeHUEl1PELMfc6F0RdDR3kBrRgZasWt8bEEL&_nc_ohc=X7akmYL1fzYAX-iZWwU&tn=J_HdblqpAZWqUZvt&_nc_ht=scontent.fbkk7-3.fna&oh=00_AT_L71yRysebegNuEmeYjatRiqpFuKF0IGnk2VAxjSFZaA&oe=627E59E6"},{"Id":4,"Name":0,"Username":"test2","Password":"test","Role":0,"Point":0,"Picture":"https://i.pinimg.com/736x/e0/96/ba/e096ba2b671f4d0914f77082c1415f19.jpg"}]}
+{
+  "meta": { "recordNum": 5 },
+  "collection": [
+    {
+      "Id": 0,
+      "Name": "AUsername",
+      "Username": "AUsername",
+      "Password": "APassword",
+      "Role": 0,
+      "Point": 0,
+      "Picture": null,
+      "Disabled": false
+    },
+    {
+      "Id": 1,
+      "Name": "AUsername2",
+      "Username": "AUsername2",
+      "Password": "APassword",
+      "Role": 0,
+      "Point": 0,
+      "Picture": null,
+      "Disabled": null
+    },
+    {
+      "Id": 2,
+      "Name": "AUsername3",
+      "Username": "AUsername3",
+      "Password": "APassword",
+      "Role": 0,
+      "Point": 0,
+      "Picture": "https://scontent.fbkk7-3.fna.fbcdn.net/v/t1.6435-1/196687920_4110863922322659_5107938165452550483_n.jpg?stp=dst-jpg_p320x320&_nc_cat=108&ccb=1-5&_nc_sid=7206a8&_nc_eui2=AeHpDgcTxCqcxxPJD8o54FFrdARs15Y0EQx0BGzXljQRDGlYFbxjMeHUEl1PELMfc6F0RdDR3kBrRgZasWt8bEEL&_nc_ohc=X7akmYL1fzYAX-iZWwU&tn=J_HdblqpAZWqUZvt&_nc_ht=scontent.fbkk7-3.fna&oh=00_AT_L71yRysebegNuEmeYjatRiqpFuKF0IGnk2VAxjSFZaA&oe=627E59E6",
+      "Disabled": null
+    },
+    {
+      "Id": 3,
+      "Name": "test",
+      "Username": "test",
+      "Password": "test",
+      "Role": 0,
+      "Point": 0,
+      "Picture": "https://scontent.fbkk7-3.fna.fbcdn.net/v/t1.6435-1/196687920_4110863922322659_5107938165452550483_n.jpg?stp=dst-jpg_p320x320&_nc_cat=108&ccb=1-5&_nc_sid=7206a8&_nc_eui2=AeHpDgcTxCqcxxPJD8o54FFrdARs15Y0EQx0BGzXljQRDGlYFbxjMeHUEl1PELMfc6F0RdDR3kBrRgZasWt8bEEL&_nc_ohc=X7akmYL1fzYAX-iZWwU&tn=J_HdblqpAZWqUZvt&_nc_ht=scontent.fbkk7-3.fna&oh=00_AT_L71yRysebegNuEmeYjatRiqpFuKF0IGnk2VAxjSFZaA&oe=627E59E6",
+      "Disabled": null
+    },
+    {
+      "Id": 4,
+      "Name": "test2",
+      "Username": "test2",
+      "Password": "test",
+      "Role": 0,
+      "Point": 0,
+      "Picture": "https://i.pinimg.com/736x/e0/96/ba/e096ba2b671f4d0914f77082c1415f19.jpg",
+      "Disabled": null
+    }
+  ]
+}

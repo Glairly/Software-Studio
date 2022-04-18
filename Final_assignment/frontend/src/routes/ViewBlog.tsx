@@ -19,6 +19,7 @@ import { fetchUser } from "../features/auth/authAPI";
 import { selectUser, User } from "../features/auth/authSlice";
 import { Blog, selectBlog } from "../features/blog/blogSlice";
 import { fetchBlogById, postLike, removeLike } from "../features/blog/blogAPI";
+import Comment from "../components/Blog/Comment";
 
 export default function ViewBlog() {
   const [blogUser, setBlogUser] = useState({} as User);
@@ -45,11 +46,11 @@ export default function ViewBlog() {
 
   const isLiked = useMemo(() => {
     return blog?.likes?.find((el: any) => el.owner == user.id) as Boolean;
-  }, [blog]);
+  }, [blog, user.id]);
 
   const handleLike = async () => {
-    if (!isLiked) postLike(user.id, blog.blog.id);
-    else removeLike(user.id, blog.blog.id);
+    if (!isLiked) await postLike(user.id, blog.blog.id);
+    else await removeLike(user.id, blog.blog.id);
 
     const res = (await fetchBlogById(id)).response;
     setBlog(res);
@@ -126,12 +127,18 @@ export default function ViewBlog() {
                 </Grid>
               </Paper>
             </Grid>
+            {/* Blog content */}
             <Grid item sx={{ textAlign: "left", my: 4, minHeight: 320 }}>
               <span
+                className="blog-content"
                 dangerouslySetInnerHTML={{ __html: blog.blog.content }}
               ></span>
             </Grid>
-            <Divider sx={{ my: 2 }} />
+            <Typography variant="h5" sx={{ mt: 4, mb: 1, textAlign: "start" }}>
+              ผู้เขียนกระทู้
+            </Typography>
+            <Divider sx={{ mb: 2 }} />
+            {/* Author */}
             <Grid
               item
               container
@@ -193,6 +200,39 @@ export default function ViewBlog() {
                   </Typography>
                 </Grid>
               </Grid>
+            </Grid>
+            <Divider sx={{ my: 2 }} />
+            <Grid sx={{ textAlign: "left" }}>
+              <Typography variant="h5" sx={{ mt: 4, mb: 1 }}>
+                คอมเม้นต์
+              </Typography>
+            </Grid>
+            <Divider sx={{ mb: 6 }} />
+            <Grid item direction="column">
+              {blog.comments.map((el: any) => (
+                <Comment
+                  comment={el}
+                  key={el.id}
+                  removable={el.owner === user.id}
+                  callback={async () => {
+                    const res = (await fetchBlogById(id)).response;
+                    setBlog(res);
+                  }}
+                />
+              ))}
+              <Comment
+                comment={{
+                  id: -1,
+                  blog: blog.blog.id,
+                  owner: user.id,
+                  content: "",
+                }}
+                editable={true}
+                callback={async () => {
+                  const res = (await fetchBlogById(id)).response;
+                  setBlog(res);
+                }}
+              />
             </Grid>
           </Grid>
         </Container>

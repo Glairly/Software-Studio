@@ -11,13 +11,13 @@ namespace backend.Models
     public class User
     {
         public long Id { get; set; }
-        public long Name { get; set; }
+        public String? Name { get; set; }
         public String? Username { get; set; }
         public String? Password { get; set; }
         public role Role { get; set;}
         public long Point { get; set; }
         public String? Picture { get; set; }
-
+        public Boolean? Disabled { get; set; }
     }
 
     public class UserCollection
@@ -111,6 +111,7 @@ namespace backend.Models
                         obj.Role = item.Role;
                         obj.Point = item.Point;
                         obj.Picture = item.Picture;
+                        obj.Disabled = item.Disabled;
                     }
                     sr.Close();
                 }
