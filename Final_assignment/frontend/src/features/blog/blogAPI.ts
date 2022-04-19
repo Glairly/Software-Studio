@@ -50,6 +50,64 @@ export function postBlog(blog: FormData) {
   );
 }
 
+export function hideBlog(id: any, status: any) {
+  return new Promise<{ status: Boolean; response: any }>(
+    async (resolve, reject) => {
+      var payload = new FormData();
+      payload.append("Id", id);
+      payload.append("Status", status);
+
+      try {
+        const res = await axios("https://localhost:7056/Blog/Hide", {
+          method: "PUT",
+          data: payload,
+        });
+
+        resolve({ status: true, response: res.data.result });
+      } catch (e) {
+        reject({ status: false, response: "" });
+      }
+    }
+  );
+}
+
+export function removeBlog(id: any) {
+  return new Promise<{ status: Boolean; response: any }>(
+    async (resolve, reject) => {
+      var payload = new FormData();
+      payload.append("Id", id);
+
+      try {
+        const res = await axios("https://localhost:7056/Blog/Delete", {
+          method: "DELETE",
+          data: payload,
+        });
+
+        resolve({ status: true, response: res.data.result });
+      } catch (e) {
+        reject({ status: false, response: "" });
+      }
+    }
+  );
+}
+export function fetchBlogByOwner(id: any) {
+  return new Promise<{ status: Boolean; response: any }>(
+    async (resolve, reject) => {
+      try {
+        const res = await axios(
+          "https://localhost:7056/Blog/ListByOwner?id=0" + id,
+          {
+            method: "GET",
+          }
+        );
+        resolve({ status: true, response: res.data.result });
+      } catch (e) {
+        reject({ status: false, response: "" });
+      }
+    }
+  );
+}
+
 export function fetchBlogById(id: any) {
   return new Promise<{ status: Boolean; response: any }>(
     async (resolve, reject) => {

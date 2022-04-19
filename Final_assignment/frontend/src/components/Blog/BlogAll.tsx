@@ -1,40 +1,23 @@
-import { Divider, Fab, Grid, Typography } from "@mui/material";
+import { Divider, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
-import TempleBuddhistIcon from "@mui/icons-material/TempleBuddhist";
-import ChurchIcon from "@mui/icons-material/Church";
-import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
-import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
-import BrunchDiningIcon from "@mui/icons-material/BrunchDining";
 import BlogCard from "./BlogCard";
-import { useAppSelector } from "../../app/hooks";
-import { Blog, selectBlog } from "../../features/blog/blogSlice";
+import {
+  Blog,
+} from "../../features/blog/blogSlice";
 
 interface BlogProps {
   blogs: Blog[];
+  refetchCallback?: Function;
 }
 
 export default function BlogAll(props: BlogProps) {
   const { blogs } = props;
 
-  const catalog = [
-    {
-      icon: <TempleBuddhistIcon color="warning" />,
-    },
-    {
-      icon: <ChurchIcon color="info" />,
-    },
-    {
-      icon: <CardGiftcardIcon color="secondary" />,
-    },
-    {
-      icon: <DirectionsWalkIcon color="error" />,
-    },
-    {
-      icon: <BrunchDiningIcon color="success" />,
-    },
-  ];
+  const refreshBlog = async () => {
+    if (props.refetchCallback) props.refetchCallback();
+  };
 
   return (
     <div className="mt-10">
@@ -44,18 +27,6 @@ export default function BlogAll(props: BlogProps) {
       </Typography>
       <Divider sx={{ mb: 4 }} />
       <Box>
-        {/* <Grid
-          container
-          columnSpacing={2}
-          justifyContent="center"
-          alignItems="center"
-        >
-          {catalog.map((el) => (
-            <Grid item>
-              <Fab sx={{ background: "white !important" }}>{el.icon}</Fab>
-            </Grid>
-          ))}
-        </Grid> */}
         <Grid
           container
           columnSpacing={2}
@@ -72,7 +43,12 @@ export default function BlogAll(props: BlogProps) {
             spacing={2}
           >
             {blogs.map((el) => (
-              <BlogCard post={el} key={el.blog.id} />
+              <BlogCard
+                post={el}
+                key={el.blog.id}
+                showAction={true}
+                callback={refreshBlog}
+              />
             ))}
           </Grid>
         </Grid>

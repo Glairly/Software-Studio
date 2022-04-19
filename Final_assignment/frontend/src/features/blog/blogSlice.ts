@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
-import { fetchAnnoucement, fetchBlog, postBlog } from "./blogAPI";
+import {
+  fetchAnnoucement,
+  fetchBlog,
+  postBlog,
+  fetchBlogByOwner,
+} from "./blogAPI";
 
 export interface Blog {
   blog: {
@@ -10,6 +15,7 @@ export interface Blog {
     title: string;
     content: string;
     picture: string;
+    hidden: Boolean;
   };
   likes: any;
   comments: any;
@@ -18,11 +24,13 @@ export interface Blog {
 export interface BlogState {
   value: Blog[];
   annoucement: Blog[];
+  myblogs: Blog[];
 }
 
 const initialState: BlogState = {
   value: [],
   annoucement: [],
+  myblogs: [],
 };
 
 export const fetchBlogs = createAsyncThunk("blog/fetch", async () => {
@@ -49,6 +57,15 @@ export const postBlogs = createAsyncThunk(
   }
 );
 
+export const fetchBlogByOwners = createAsyncThunk(
+  "blog/postBlog",
+  async (id: any) => {
+    const res = await fetchBlogByOwner(id);
+    if (res.status) return res.response;
+    else return false;
+  }
+);
+
 export const blogSlice = createSlice({
   name: "blog",
   initialState,
@@ -67,6 +84,9 @@ export const blogSlice = createSlice({
     builder.addCase(fetchAnnoucements.fulfilled, (state, action) => {
       if (action.payload) state.annoucement = action.payload;
     });
+    builder.addCase(fetchBlogByOwners.fulfilled, (state, action) => {
+      if (action.payload) state.myblogs = action.payload;
+    });
   },
 });
 
@@ -74,5 +94,7 @@ export const { setBlog, addBlog } = blogSlice.actions;
 
 export const selectBlog = (state: RootState) => state.blog.value;
 export const selectAnnoucement = (state: RootState) => state.blog.annoucement;
+export const selectMyBlog = (state: RootState) => state.blog.myblogs;
+
 
 export default blogSlice.reducer;

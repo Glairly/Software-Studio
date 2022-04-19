@@ -40,7 +40,7 @@ export default function Catagory(props: BlogProps) {
     <div className="mt-10">
       <Typography variant="h5" sx={{ textAlign: "start" }}>
         {/* หมวดหมู่ */}
-        กระทู้ทั้งหมด
+        กระทู้ที่น่าสนใจ
       </Typography>
       <Divider sx={{ mb: 4 }} />
       <Box>

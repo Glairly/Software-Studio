@@ -7,24 +7,24 @@ import BlogList from "../features/blog/Blog";
 import {
   fetchBlogs,
   fetchAnnoucements,
-  selectBlog,
-  selectAnnoucement,
+  selectMyBlog,
+  fetchBlogByOwners,
 } from "../features/blog/blogSlice";
 
 export default function MyBlog() {
-  const blogs = useAppSelector(selectBlog);
+  const blogs = useAppSelector(selectMyBlog);
   const user = useAppSelector(selectUser);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchBlogs());
-    dispatch(fetchAnnoucements());
+    dispatch(fetchBlogByOwners(user.id));
   }, []);
 
   const myBlogs = useMemo(() => {
     try {
-      return blogs.filter((el) => el.blog.owner === user.id);
+      // return blogs.filter((el) => el.blog.owner === user.id);
+      return blogs;
     } catch (e) {
       return [];
     }
@@ -55,7 +55,11 @@ export default function MyBlog() {
         </Grid>
       </Grid>
 
-      <BlogList showAll={true} blogs={myBlogs} />
+      <BlogList
+        showAll={true}
+        blogs={myBlogs}
+        refreshCallBack={() => dispatch(fetchBlogByOwners(user.id))}
+      />
     </Container>
   );
 }

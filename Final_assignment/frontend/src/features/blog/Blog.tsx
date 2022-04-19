@@ -10,6 +10,7 @@ import BlogAll from "../../components/Blog/BlogAll";
 interface BlogProps {
   blogs: Blog[];
   showAll?: Boolean;
+  refreshCallBack?: Function;
 }
 
 export default function BlogList(props: BlogProps) {
@@ -44,7 +45,7 @@ export default function BlogList(props: BlogProps) {
       </div>
       <div>
         {props.showAll ? (
-          <BlogAll blogs={props.blogs} />
+          <BlogAll blogs={props.blogs} refetchCallback={props.refreshCallBack} />
         ) : (
           <Catagory blogs={props.blogs} />
         )}
