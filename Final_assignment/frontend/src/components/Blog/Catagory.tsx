@@ -40,7 +40,8 @@ export default function Catagory(props: BlogProps) {
     <div className="mt-10">
       <Typography variant="h5" sx={{ textAlign: "start" }}>
         {/* หมวดหมู่ */}
-        กระทู้ที่น่าสนใจ
+        {/* กระทู้ที่น่าสนใจ */}
+        กระทู้ทั้งหมด
       </Typography>
       <Divider sx={{ mb: 4 }} />
       <Box>
@@ -63,7 +64,20 @@ export default function Catagory(props: BlogProps) {
           justifyContent="center"
           alignItems="start"
         >
-          {blogs.length ? <BlogCard post={blogs[0]} vertical={true} /> : ""}
+          <Grid
+            item
+            container
+            direction="column"
+            spacing={2}
+            flexGrow={1}
+            xs={6}
+          >
+            {blogs.length
+              ? blogs
+                  .slice(0, Math.ceil(blogs.length * 0.2))
+                  .map((el) => <BlogCard post={el} vertical={true} />)
+              : ""}
+          </Grid>
           <Grid
             item
             container
@@ -73,9 +87,11 @@ export default function Catagory(props: BlogProps) {
             spacing={2}
             xs={6}
           >
-            {blogs.slice(1, 1 + 3).map((el) => (
-              <BlogCard post={el} key={el.blog.id} />
-            ))}
+            {blogs
+              .slice(Math.ceil(blogs.length * 0.2) + 1, blogs.length)
+              .map((el) => (
+                <BlogCard post={el} key={el.blog.id} />
+              ))}
           </Grid>
         </Grid>
       </Box>

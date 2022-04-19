@@ -33,11 +33,14 @@ const initialState: BlogState = {
   myblogs: [],
 };
 
-export const fetchBlogs = createAsyncThunk("blog/fetch", async () => {
-  const res = await fetchBlog();
-  if (res.status) return res.response;
-  else return false;
-});
+export const fetchBlogs = createAsyncThunk(
+  "blog/fetch",
+  async (includeHide: boolean = false) => {
+    const res = await fetchBlog(includeHide);
+    if (res.status) return res.response;
+    else return false;
+  }
+);
 
 export const fetchAnnoucements = createAsyncThunk(
   "blog/fetchAnnoucement",
@@ -95,6 +98,5 @@ export const { setBlog, addBlog } = blogSlice.actions;
 export const selectBlog = (state: RootState) => state.blog.value;
 export const selectAnnoucement = (state: RootState) => state.blog.annoucement;
 export const selectMyBlog = (state: RootState) => state.blog.myblogs;
-
 
 export default blogSlice.reducer;

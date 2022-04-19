@@ -10,6 +10,7 @@ import BlogAll from "../../components/Blog/BlogAll";
 interface BlogProps {
   blogs: Blog[];
   showAll?: Boolean;
+  hideFeatured?: Boolean;
   refreshCallBack?: Function;
 }
 
@@ -33,19 +34,29 @@ export default function BlogList(props: BlogProps) {
   return (
     <>
       <div className="text-left">
-        <Typography variant="h4" sx={{ mt: 4 }}>
-          กระทู้ยอดนิยม
-        </Typography>
-        <Divider sx={{ mb: 4 }} />
-        <Grid container spacing={4}>
-          {featured.map((el) => (
-            <BlogCard post={el} key={el.blog.id} />
-          ))}
-        </Grid>
+        {!props.hideFeatured ? (
+          <>
+            {" "}
+            <Typography variant="h4" sx={{ mt: 4 }}>
+              กระทู้ยอดนิยม
+            </Typography>
+            <Divider sx={{ mb: 4 }} />
+            <Grid container spacing={4}>
+              {featured.map((el) => (
+                <BlogCard post={el} key={el.blog.id} />
+              ))}
+            </Grid>{" "}
+          </>
+        ) : (
+          ""
+        )}
       </div>
       <div>
         {props.showAll ? (
-          <BlogAll blogs={props.blogs} refetchCallback={props.refreshCallBack} />
+          <BlogAll
+            blogs={props.blogs}
+            refetchCallback={props.refreshCallBack}
+          />
         ) : (
           <Catagory blogs={props.blogs} />
         )}

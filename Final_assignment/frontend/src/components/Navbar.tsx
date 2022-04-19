@@ -28,6 +28,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import LogoutIcon from "@mui/icons-material/Logout";
 import RedeemIcon from "@mui/icons-material/Redeem";
+import StorageIcon from '@mui/icons-material/Storage';
 import { Divider } from "@mui/material";
 
 interface NavbarProps {
@@ -68,6 +69,13 @@ const Navbar = (props: NavbarProps) => {
       label: "สร้างกระทู้",
       fn: () => {
         navigate("/addblog", { replace: true });
+      },
+    },
+    {
+      icon: <StorageIcon />,
+      label: "หน้าจัดการข้อมูล",
+      fn: () => {
+        navigate("/admin", { replace: true });
       },
     },
     // {
@@ -172,7 +180,7 @@ const Navbar = (props: NavbarProps) => {
           className="text-orange-600"
           sx={{ mr: 4, display: { xs: "none", md: "flex" } }}
         >
-          <Link to="/">Pra-Song</Link>
+          <Link to="/">Pra-Song {user.role ? "| Admin" : ""} </Link>
         </Typography>
 
         {/* Action btn */}

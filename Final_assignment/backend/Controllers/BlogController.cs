@@ -25,12 +25,14 @@ public class BlogController : Controller
     }
 
     [HttpGet]
-    public JsonResult List()
+    public JsonResult List(bool IncludeHide)
     {
-        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner != 0 && x.Hidden != true);
+        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner != 0 && (IncludeHide ? true : x.Hidden != true));
         var res = new List<object>();
-        foreach (var blog in blogs){
-            res.Add( Json(new {
+        foreach (var blog in blogs)
+        {
+            res.Add(Json(new
+            {
                 blog = blog,
                 comments = CommentContext.Comments.get().FindAll(x => x.Blog == blog.Id).Count,
                 likes = LikeContext.Likes.get().FindAll(x => x.Blog == blog.Id).Count
@@ -42,11 +44,13 @@ public class BlogController : Controller
     [HttpGet]
     public JsonResult ListByOwner(long id)
     {
-        
-        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner == id );
+
+        var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner == id);
         var res = new List<object>();
-        foreach (var blog in blogs){
-            res.Add( Json(new {
+        foreach (var blog in blogs)
+        {
+            res.Add(Json(new
+            {
                 blog = blog,
                 comments = CommentContext.Comments.get().FindAll(x => x.Blog == blog.Id).Count,
                 likes = LikeContext.Likes.get().FindAll(x => x.Blog == blog.Id).Count
@@ -60,8 +64,10 @@ public class BlogController : Controller
     {
         var blogs = BlogContext.Blogs.get().FindAll(x => x.Owner == 0 && x.Hidden != true);
         var res = new List<object>();
-        foreach (var blog in blogs){
-            res.Add( Json(new {
+        foreach (var blog in blogs)
+        {
+            res.Add(Json(new
+            {
                 blog = blog,
                 comments = CommentContext.Comments.get().FindAll(x => x.Blog == blog.Id).Count,
                 likes = LikeContext.Likes.get().FindAll(x => x.Blog == blog.Id).Count
@@ -78,13 +84,15 @@ public class BlogController : Controller
         var comments = CommentContext.Comments.get().FindAll(x => x.Blog == id);
         var likes = LikeContext.Likes.get().FindAll(x => x.Blog == id);
 
-        return Json(new { 
-                    result = new { 
-                        blog = BlogContext.Blogs.get().FirstOrDefault(x => x.Id == id), 
-                        comments = comments,
-                        likes = likes
-                        } 
-                    });
+        return Json(new
+        {
+            result = new
+            {
+                blog = BlogContext.Blogs.get().FirstOrDefault(x => x.Id == id),
+                comments = comments,
+                likes = likes
+            }
+        });
     }
 
     [HttpPost]
@@ -102,12 +110,13 @@ public class BlogController : Controller
     }
 
     [HttpPut]
-    public JsonResult Hide(long id,bool status){
+    public JsonResult Hide(long id, bool status)
+    {
         // return Json(new {});
         var user = BlogContext.Blogs.get().FirstOrDefault(x => x.Id == id);
-        if(user == null)  return Json(new  { result = false, message = "User not found." });
+        if (user == null) return Json(new { result = false, message = "User not found." });
         user.Hidden = status;
-        return Json(new  { result = BlogContext.Blogs.update(user) });
+        return Json(new { result = BlogContext.Blogs.update(user) });
     }
 
     [HttpPut]

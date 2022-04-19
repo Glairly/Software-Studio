@@ -24,9 +24,9 @@ public class AuthController : Controller
         return Json(new { result = true });
     }
 
-    public JsonResult List()
+    public JsonResult List(bool IncludeDisabled)
     {
-        return Json(new { result = UserContext.Users.get() });
+        return Json(new { result = UserContext.Users.get().FindAll(x => (IncludeDisabled ? true : x.Disabled != true)) });
     }
 
     [HttpGet]

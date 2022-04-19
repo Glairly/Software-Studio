@@ -75,6 +75,7 @@ export default function BlogCard(props: FeaturedPostProps) {
           display: "flex",
           flexDirection: vertical ? "column" : "row",
           position: "relative",
+          flexGrow: 1,
         }}
         className="shadow-orange-600"
       >
@@ -143,14 +144,13 @@ export default function BlogCard(props: FeaturedPostProps) {
                 </>
               ) : (
                 <Typography sx={{ color: "red", mx: 2, fontWeight: "bold" }}>
-                  <VisibilityOffIcon fontSize="small" />
-                  {" "}กระทู้โดนซ่อน
+                  <VisibilityOffIcon fontSize="small" /> กระทู้โดนซ่อน
                 </Typography>
               )}
 
               <Grid item justifySelf="start" flexGrow={1}></Grid>
 
-              <Grid item justifySelf="start" >
+              <Grid item justifySelf="start">
                 <Link
                   className="text-orange-600"
                   to={`/viewblog?id=${post.blog.id as unknown as string}`}

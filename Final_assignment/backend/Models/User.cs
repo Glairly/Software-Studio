@@ -109,9 +109,7 @@ namespace backend.Models
                     {
                         if(item.Name != null)
                         obj.Name = item.Name;
-                        if(item.Role != null)
                         obj.Role = item.Role;
-                        if(item.Point != null)
                         obj.Point = item.Point;
                         if(item.Picture != null)
                         obj.Picture = item.Picture;

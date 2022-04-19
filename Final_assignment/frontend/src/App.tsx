@@ -6,11 +6,11 @@ import Navbar from "./components/Navbar";
 import Auth from "./features/auth/Auth";
 import { selectUser } from "./features/auth/authSlice";
 import AddBlog from "./routes/AddBlog";
+import Admin from "./routes/Admin";
 import Home from "./routes/Home";
 import MyBlog from "./routes/MyBlog";
 import Profile from "./routes/Profile";
 import ViewBlog from "./routes/ViewBlog";
-
 
 function App() {
   const user = useAppSelector(selectUser);
@@ -40,6 +40,7 @@ function App() {
         <Route path="/addblog" element={<AddBlog />} />
         <Route path="/viewblog" element={<ViewBlog />} />
         <Route path="/profile" element={<Profile />} />
+        {user.role ? <Route path="/admin" element={<Admin />} /> : ""}
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     );
