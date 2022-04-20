@@ -4,23 +4,21 @@ import "./index.css";
 import App from "./App";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
-import { PersistGate } from "redux-persist/integration/react";
-import { persistStore } from "redux-persist";
+import P1 from './routes/p1'
 
-
-let persistor = persistStore(store);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </PersistGate>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/p1" element={<P1 />} />
+        </Routes>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

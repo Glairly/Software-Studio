@@ -1,10 +1,8 @@
-import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
-import "./App.css";
-import { useAppSelector } from "./app/hooks";
-import Auth from "./features/auth/Auth";
-import { selectUser } from "./features/auth/authSlice";
-import Home from "./routes/Home";
+import React from 'react';
+import logo from './logo.svg';
+import { Counter } from './features/counter/Counter';
+import './App.css';
+import { Link } from 'react-router-dom';
 
 function App() {
   const user = useAppSelector(selectUser);
@@ -30,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      {user.username !== "" ? <AuthApp /> : <UnAuthApp />}
+       <Link to="/p1">P1</Link> | 
     </div>
   );
 }

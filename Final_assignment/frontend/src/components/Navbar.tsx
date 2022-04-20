@@ -30,6 +30,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import RedeemIcon from '@mui/icons-material/Redeem';
 import { Divider } from "@mui/material";
 
+
 interface NavbarProps {
   isAuth?: Boolean;
 }
