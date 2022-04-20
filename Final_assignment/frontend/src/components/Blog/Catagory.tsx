@@ -75,7 +75,7 @@ export default function Catagory(props: BlogProps) {
             {blogs.length
               ? blogs
                   .slice(0, Math.ceil(blogs.length * 0.2))
-                  .map((el) => <BlogCard post={el} vertical={true} />)
+                  .map((el) => <BlogCard post={el} vertical={true} key={el.blog.id} />)
               : ""}
           </Grid>
           <Grid

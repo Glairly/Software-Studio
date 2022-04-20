@@ -27,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/viewblog" element={<ViewBlog />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     );

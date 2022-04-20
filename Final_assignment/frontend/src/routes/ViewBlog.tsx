@@ -49,8 +49,9 @@ export default function ViewBlog() {
   }, [blog, user.id]);
 
   const handleLike = async () => {
-    if (!isLiked) await postLike(user.id, blog.blog.id);
-    else await removeLike(user.id, blog.blog.id);
+    if (user.id !== 0)
+      if (!isLiked) await postLike(user.id, blog.blog.id);
+      else await removeLike(user.id, blog.blog.id);
 
     const res = (await fetchBlogById(id)).response;
     setBlog(res);
@@ -213,26 +214,30 @@ export default function ViewBlog() {
                 <Comment
                   comment={el}
                   key={el.id}
-                  removable={el.owner === user.id}
+                  removable={el.owner === user.id && user.id !== 0}
                   callback={async () => {
                     const res = (await fetchBlogById(id)).response;
                     setBlog(res);
                   }}
                 />
               ))}
-              <Comment
-                comment={{
-                  id: -1,
-                  blog: blog.blog.id,
-                  owner: user.id,
-                  content: "",
-                }}
-                editable={true}
-                callback={async () => {
-                  const res = (await fetchBlogById(id)).response;
-                  setBlog(res);
-                }}
-              />
+              {user && user.id ? (
+                <Comment
+                  comment={{
+                    id: -1,
+                    blog: blog.blog.id,
+                    owner: user.id,
+                    content: "",
+                  }}
+                  editable={true}
+                  callback={async () => {
+                    const res = (await fetchBlogById(id)).response;
+                    setBlog(res);
+                  }}
+                />
+              ) : (
+                ""
+              )}
             </Grid>
           </Grid>
         </Container>

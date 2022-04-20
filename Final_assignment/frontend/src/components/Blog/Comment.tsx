@@ -55,6 +55,7 @@ export default function Comment(props: CommentProps) {
         await postComment(comment.owner, comment.blog, newComment);
 
       alert("Success.");
+      setNewComment("");
       if (props.callback) props.callback();
     } catch (e) {}
   };
