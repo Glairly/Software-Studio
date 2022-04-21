@@ -78,3 +78,24 @@ export function blockUser(id: any, status: any) {
     }
   );
 }
+
+export function ChangeRoleUser(id: any, role: any) {
+  return new Promise<{ status: Boolean; response: any }>(
+    async (resolve, reject) => {
+      const payload = new FormData();
+      payload.append("Id", id);
+      payload.append("Role", role);
+
+      try {
+        const res = await axios("https://localhost:7056/Auth/ChangeRole", {
+          method: "PUT",
+          data: payload,
+        });
+
+        resolve({ status: true, response: res.data.result });
+      } catch (e) {
+        reject({ status: false, response: "" });
+      }
+    }
+  );
+}

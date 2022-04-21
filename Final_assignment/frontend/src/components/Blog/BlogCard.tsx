@@ -76,14 +76,15 @@ export default function BlogCard(props: FeaturedPostProps) {
           flexDirection: vertical ? "column" : "row",
           position: "relative",
           flexGrow: 1,
+          maxHeight: vertical ? 480 + 280 : 260,
         }}
-        className="shadow-orange-600"
+        elevation={0}
       >
         <CardMedia
           component="img"
           sx={{
             width: !vertical ? 200 : "auto",
-            height: vertical ? 480 : 260,
+            height: vertical ? 400 : 260,
             display: { xs: "none", sm: "block" },
           }}
           image={
@@ -100,12 +101,17 @@ export default function BlogCard(props: FeaturedPostProps) {
             paddingBottom: "0.5rem !important",
           }}
         >
-          <Typography component="h2" variant="h5">
+          {/* title */}
+          <Typography component="h2" variant="h5" sx={{ fontWeight: "bold" }}>
             {post.blog.title}
+          </Typography>
+          {/* tags */}
+          <Typography component="h2" variant="subtitle2" color="gray">
+            {post.blog.tags.split(",").slice(0, 2).join(" • ")}
           </Typography>
           <Typography
             variant="subtitle1"
-            sx={{ maxHeight: "120px", overflow: "hidden" }}
+            sx={{ maxHeight: "100px", overflow: "hidden", mt: 2 }}
             paragraph
           >
             <span
@@ -120,30 +126,53 @@ export default function BlogCard(props: FeaturedPostProps) {
             sx={{ textAlign: "center" }}
             color="warning"
           >
-            <Grid container justifyContent="start" alignItems="end" spacing={2}>
+            <Grid container justifyContent="start" alignItems="end">
               {/* Icons */}
               {!post.blog.hidden ? (
                 <>
-                  <Grid item justifyContent="center" alignItems="center">
-                    <Fab
-                      size="small"
-                      disableRipple
-                      disableFocusRipple
-                      sx={{ background: "white !important" }}
-                    >
-                      <FavoriteBorderOutlinedIcon color="error" />
-                    </Fab>
-                    <Typography sx={{ mt: 1 }}>{post.likes || 0}</Typography>
-                  </Grid>
-                  <Grid item>
-                    <Fab size="small" sx={{ background: "white !important" }}>
-                      <ChatBubbleOutlineRoundedIcon color="info" />
-                    </Fab>
-                    <Typography sx={{ mt: 1 }}>{post.comments || 0}</Typography>
+                  <Grid
+                    item
+                    direction="row"
+                    justifyContent="end"
+                    alignItems="center"
+                    sx={{ display: "flex" }}
+                  >
+                    <Grid item>
+                      <Fab
+                        disableFocusRipple
+                        disableTouchRipple
+                        disableRipple
+                        disabled
+                        size="small"
+                        sx={{ background: "white !important" }}
+                      >
+                        <FavoriteBorderOutlinedIcon color="error" />
+                      </Fab>
+                    </Grid>
+                    <Grid item>
+                      <Typography sx={{ mx: 1 }}>{post.likes || 0}</Typography>
+                    </Grid>
+                    <Grid item sx={{ ml: 2 }}>
+                      <Fab
+                        disableFocusRipple
+                        disableTouchRipple
+                        disableRipple
+                        size="small"
+                        disabled
+                        sx={{ background: "white !important" }}
+                      >
+                        <ChatBubbleOutlineRoundedIcon color="info" />
+                      </Fab>
+                    </Grid>
+                    <Grid item>
+                      <Typography sx={{ mx: 1 }}>
+                        {post.comments || 0}
+                      </Typography>
+                    </Grid>
                   </Grid>
                 </>
               ) : (
-                <Typography sx={{ color: "red", mx: 2, fontWeight: "bold" }}>
+                <Typography sx={{ color: "red", fontWeight: "bold" }}>
                   <VisibilityOffIcon fontSize="small" /> กระทู้โดนซ่อน
                 </Typography>
               )}
@@ -155,7 +184,7 @@ export default function BlogCard(props: FeaturedPostProps) {
                   className="text-orange-600"
                   to={`/viewblog?id=${post.blog.id as unknown as string}`}
                 >
-                  อ่านต่อ...
+                  อ่านต่อ {`>`}
                 </Link>
               </Grid>
             </Grid>

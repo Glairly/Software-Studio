@@ -7,6 +7,8 @@ import {
   TextField,
   Chip,
   Divider,
+  Box,
+  InputAdornment,
 } from "@mui/material";
 import React, { useMemo, useState } from "react";
 import ReactQuill from "react-quill";
@@ -14,6 +16,8 @@ import "react-quill/dist/quill.snow.css";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectUser } from "../features/auth/authSlice";
 import { postBlogs } from "../features/blog/blogSlice";
+import TitleIcon from "@mui/icons-material/Title";
+import PanoramaIcon from "@mui/icons-material/Panorama";
 
 export default function AddBlog() {
   const user = useAppSelector(selectUser);
@@ -25,10 +29,35 @@ export default function AddBlog() {
   const [picture, setPicture] = useState("");
   const [tags, setTags] = useState([] as Array<string>);
 
-  const handleAddTag = () => {
+  // quil settinjgs
+  const modules = {
+    toolbar: [
+      ["bold", "italic", "underline", "strike"], // toggled buttons
+      ["blockquote", "code-block"],
+
+      [{ header: 1 }, { header: 2 }], // custom button values
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ script: "sub" }, { script: "super" }], // superscript/subscript
+      [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+      [{ direction: "rtl" }], // text direction
+
+      [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+      [{ font: [] }],
+      [{ align: [] }],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
+
+  const handleAddTag = (e: any) => {
     if (!tag || tags.includes(tag)) return;
     const _n = [...tags];
     _n.push(tag);
+    setTag("");
+    (document.querySelector("#tag-input") as HTMLInputElement).value = "";
     setTags(_n);
   };
 
@@ -102,8 +131,16 @@ export default function AddBlog() {
           <Grid item>
             <TextField
               label="หัวข้อ"
+              sx={{ width: "100%" }}
               onChange={(e) => {
                 setTitle(e.target.value);
+              }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <TitleIcon />
+                  </InputAdornment>
+                ),
               }}
             ></TextField>
           </Grid>
@@ -116,19 +153,35 @@ export default function AddBlog() {
             spacing={2}
           >
             <Grid item>
-              <img src={picture}></img>
+              <img
+                src={picture}
+                className="border rounded"
+                style={{ minWidth: 640, minHeight: 240 }}
+              ></img>
             </Grid>
             <Grid item>
               <TextField
-                label="เพิ่มรูป"
+                label="เพิ่มรูปปก"
                 onChange={(e) => {
                   setPicture(e.target.value);
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <PanoramaIcon />
+                    </InputAdornment>
+                  ),
                 }}
               ></TextField>
             </Grid>
           </Grid>
           <Grid item>
-            <ReactQuill theme="snow" value={value} onChange={setValue} />
+            <ReactQuill
+              theme="snow"
+              value={value}
+              onChange={setValue}
+              modules={modules}
+            />
           </Grid>
           <Grid
             item
@@ -166,6 +219,7 @@ export default function AddBlog() {
               <Grid item>
                 <TextField
                   label="เพิ่มแท็ก"
+                  id="tag-input"
                   onChange={(e) => {
                     setTag(e.target.value);
                   }}

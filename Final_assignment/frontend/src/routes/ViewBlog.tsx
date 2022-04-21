@@ -128,6 +128,9 @@ export default function ViewBlog() {
                 </Grid>
               </Paper>
             </Grid>
+
+            <Divider sx={{ my: 2 }} />
+
             {/* Blog content */}
             <Grid item sx={{ textAlign: "left", my: 4, minHeight: 320 }}>
               <span
@@ -135,7 +138,8 @@ export default function ViewBlog() {
                 dangerouslySetInnerHTML={{ __html: blog.blog.content }}
               ></span>
             </Grid>
-            <Typography variant="h5" sx={{ mt: 4, mb: 1, textAlign: "start" }}>
+            <Divider sx={{ my: 2 }} />
+            <Typography variant="h5" sx={{ mt: 5, mb: 1, textAlign: "start" }}>
               ผู้เขียนกระทู้
             </Typography>
             <Divider sx={{ mb: 2 }} />

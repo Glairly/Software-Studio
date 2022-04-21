@@ -3,13 +3,12 @@ import { Box } from "@mui/system";
 import React from "react";
 
 import BlogCard from "./BlogCard";
-import {
-  Blog,
-} from "../../features/blog/blogSlice";
+import { Blog } from "../../features/blog/blogSlice";
 
 interface BlogProps {
   blogs: Blog[];
   refetchCallback?: Function;
+  hideHeader?: Boolean;
 }
 
 export default function BlogAll(props: BlogProps) {
@@ -20,12 +19,21 @@ export default function BlogAll(props: BlogProps) {
   };
 
   return (
-    <div className="mt-10">
-      <Typography variant="h5" sx={{ textAlign: "start" }}>
-        {/* หมวดหมู่ */}
-        กระทู้ทั้งหมด
-      </Typography>
-      <Divider sx={{ mb: 4 }} />
+    <div className="mt-12">
+      {props.hideHeader ? (
+        ""
+      ) : (
+        <>
+          <Typography
+            variant="h5"
+            sx={{ textAlign: "start", fontWeight: "bold" }}
+          >
+            {/* หมวดหมู่ */}
+            กระทู้ทั้งหมด
+          </Typography>
+          <Divider sx={{ mb: 4 }} />
+        </>
+      )}
       <Box>
         <Grid
           container
@@ -38,18 +46,22 @@ export default function BlogAll(props: BlogProps) {
             item
             container
             direction="row"
-            justifyContent="center"
+            justifyContent="start"
             alignItems="stretch"
             spacing={2}
           >
-            {blogs.map((el) => (
-              <BlogCard
-                post={el}
-                key={el.blog.id}
-                showAction={true}
-                callback={refreshBlog}
-              />
-            ))}
+            {blogs.map((el) =>
+              el?.blog?.id ? (
+                <BlogCard
+                  post={el}
+                  key={el.blog.id}
+                  showAction={true}
+                  callback={refreshBlog}
+                />
+              ) : (
+                ""
+              )
+            )}
           </Grid>
         </Grid>
       </Box>

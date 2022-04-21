@@ -7,7 +7,6 @@ import {
   CardActions,
   Button,
   Paper,
-  List,
   ListItem,
   ListItemText,
   ListItemAvatar,
@@ -18,9 +17,6 @@ import {
 import React, { useState, useMemo } from "react";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
 import { selectUser, setUser, User } from "../features/auth/authSlice";
-import ImageIcon from "@mui/icons-material/Image";
-import WorkIcon from "@mui/icons-material/Work";
-import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
@@ -91,8 +87,15 @@ export default function Profile() {
         โปรไฟล์
       </Typography>
       <div className="flex flex-row">
-        <Card sx={{ maxWidth: 420, borderRadius: 0 }}>
-          <CardMedia component="img" image={user.picture || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'} alt="green iguana" />
+        <Card sx={{ borderRadius: 0, maxWidth: "50%" }}>
+          <CardMedia
+            component="img"
+            image={
+              user.picture ||
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
+            }
+            alt="green iguana"
+          />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {user.name}
@@ -100,7 +103,7 @@ export default function Profile() {
             <Typography variant="body2" color="text.secondary"></Typography>
           </CardContent>
           <CardActions sx={{ justifyContent: "center" }}>
-            <div className="flex flex-row flex-wrap justify-around">
+            <div className="flex md:flex-row flex-col flex-wrap justify-around">
               <ListItem sx={{ width: "40%" }}>
                 <ListItemAvatar>
                   <Avatar sx={{ bgcolor: "rgb(234 88 12 )" }}>
@@ -139,8 +142,8 @@ export default function Profile() {
             </div>
           </CardActions>
         </Card>
-        <Paper>
-          <Card sx={{ width: 480, height: "100%", borderRadius: 0 }}>
+        <Paper sx={{ flexGrow: 1 }}>
+          <Card sx={{ width: "100%", height: "100%", borderRadius: 0 }}>
             <CardContent sx={{ height: "100%" }}>
               <div className="flex flex-col text-left h-full">
                 <Typography

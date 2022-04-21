@@ -99,6 +99,15 @@ public class AuthController : Controller
         return Json(new { result = UserContext.Users.updatePassword(item) });
     }
 
+    [HttpPut]
+    public JsonResult ChangeRole(long id,role role)
+    {
+        // return Json(new {});
+        var user = UserContext.Users.get().Find(x => x.Id == id);
+        user.Role = role;
+        return Json(new { result = UserContext.Users.update(user)});
+    }
+
     [HttpDelete]
     public JsonResult Delete(long id)
     {

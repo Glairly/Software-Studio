@@ -1,3 +1,4 @@
+import { Divider } from "@mui/material";
 import React, { useMemo } from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import "./App.css";
@@ -51,6 +52,20 @@ function App() {
     <div className="App">
       {IsAuth === "/auth" ? "" : <Navbar isAuth={!!user.username} />}
       {user.username !== "" ? <AuthApp /> : <UnAuthApp />}
+      <div className="flex-grow p-8"></div>
+      <footer className="mt-auto bg-orange-500 text-white">
+        <p className=" text-lg p-2">Prasong</p>
+        <Divider
+          sx={{
+            width: "10%",
+            mx: "auto",
+            bgcolor: "white",
+            height: 4,
+            borderRadius: "10px",
+          }}
+        />
+        <p className="p-2">ce.kmitl all rights reserved & copyright 2022</p>
+      </footer>
     </div>
   );
 }

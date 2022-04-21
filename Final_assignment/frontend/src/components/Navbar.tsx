@@ -28,7 +28,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import LogoutIcon from "@mui/icons-material/Logout";
 import RedeemIcon from "@mui/icons-material/Redeem";
-import StorageIcon from '@mui/icons-material/Storage';
+import StorageIcon from "@mui/icons-material/Storage";
 import { Divider } from "@mui/material";
 
 interface NavbarProps {
@@ -121,7 +121,7 @@ const Navbar = (props: NavbarProps) => {
   const UnAuth = () => {
     return (
       <>
-        <div className="flex flew-row items-center font-bold">
+        <div className="flex flew-row items-center font-bold mr-4">
           <Link to="/auth?mode=0">Register</Link>
           <p className="mx-2 text-2xl">|</p>
           <Link to="/auth?mode=1">Login</Link>
@@ -180,7 +180,10 @@ const Navbar = (props: NavbarProps) => {
           className="text-orange-600"
           sx={{ mr: 4, display: { xs: "none", md: "flex" } }}
         >
-          <Link to="/">Pra-Song {user.role ? "| Admin" : ""} </Link>
+          <Link to="/">
+            <span className="font-bold">Pra-Song</span>{" "}
+            {user.role ? "| Admin" : ""}{" "}
+          </Link>
         </Typography>
 
         {/* Action btn */}

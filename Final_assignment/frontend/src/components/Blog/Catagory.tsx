@@ -37,8 +37,8 @@ export default function Catagory(props: BlogProps) {
   ];
 
   return (
-    <div className="mt-10">
-      <Typography variant="h5" sx={{ textAlign: "start" }}>
+    <div className="mt-12">
+      <Typography variant="h5" sx={{ textAlign: "start", fontWeight : "bold" }}>
         {/* หมวดหมู่ */}
         {/* กระทู้ที่น่าสนใจ */}
         กระทู้ทั้งหมด

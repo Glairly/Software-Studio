@@ -12,6 +12,7 @@ interface BlogProps {
   showAll?: Boolean;
   hideFeatured?: Boolean;
   refreshCallBack?: Function;
+  hideHeader?: Boolean;
 }
 
 export default function BlogList(props: BlogProps) {
@@ -37,14 +38,14 @@ export default function BlogList(props: BlogProps) {
         {!props.hideFeatured ? (
           <>
             {" "}
-            <Typography variant="h4" sx={{ mt: 4 }}>
+            <Typography variant="h4" sx={{ mt: 4, fontWeight: "bold" }}>
               กระทู้ยอดนิยม
             </Typography>
             <Divider sx={{ mb: 4 }} />
             <Grid container spacing={4}>
-              {featured.map((el) => (
-                <BlogCard post={el} key={el.blog.id} />
-              ))}
+              {featured.map((el) =>
+                el?.blog?.id ? <BlogCard post={el} key={el.blog.id} /> : ""
+              )}
             </Grid>{" "}
           </>
         ) : (
@@ -56,6 +57,7 @@ export default function BlogList(props: BlogProps) {
           <BlogAll
             blogs={props.blogs}
             refetchCallback={props.refreshCallBack}
+            hideHeader={props.hideHeader}
           />
         ) : (
           <Catagory blogs={props.blogs} />

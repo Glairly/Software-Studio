@@ -3,16 +3,19 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Prompt", sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Poppins", "Prompt",
+    sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 * {
-  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Prompt", sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Poppins", "Prompt",
+    sans-serif !important;
 }
 
 code {
@@ -41,4 +44,28 @@ code {
 
 .MuiAppBar-root {
   box-shadow: 0px 0px 1px #222 !important;
+}
+
+.MuiCard-root, .MuiTableContainer-root{
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px !important;
+}
+
+.ql-editor {
+  min-height: 480px;
+}
+.ql-editor.ql-blank::before {
+  content: none;
+}
+.ql-editor.ql-blank::after {
+  color: rgba(0, 0, 0, 0.6);
+  content: attr("Here");
+  font-style: italic;
+  pointer-events: none;
+  display: block;
+  margin-top: -1.42rem;
+}
+
+.Mui-selected {
+  color : #EA580C !important
 }
