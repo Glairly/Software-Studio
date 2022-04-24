@@ -180,7 +180,11 @@ const Navbar = (props: NavbarProps) => {
           className="text-orange-600"
           sx={{ mr: 4, display: { xs: "none", md: "flex" } }}
         >
-          <Link to="/">
+          <Link to="/" className="flex flex-row items-center">
+            <img
+              src={require("../assets/lotus-flower.png")}
+              style={{ width: 44, height: 44, marginRight: 16 }}
+            />
             <span className="font-bold">Pra-Song</span>{" "}
             {user.role ? "| Admin" : ""}{" "}
           </Link>

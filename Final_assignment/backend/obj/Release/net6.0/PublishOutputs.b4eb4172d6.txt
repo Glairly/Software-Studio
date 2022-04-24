@@ -1,0 +1,16 @@
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\backend.exe
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\appsettings.Development.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\appsettings.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\DB\Blog\comments.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\DB\Blog\index.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\DB\Blog\likes.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\DB\Index.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\DB\Redeem\item.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\DB\Redeem\redeemed.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\DB\Redeem\Redeems.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\DB\Users.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\backend.dll
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\backend.deps.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\backend.runtimeconfig.json
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\backend.pdb
+C:\Users\USER\Desktop\grade15\SWSTU\Final_assignment\backend\bin\Release\net6.0\publish\Newtonsoft.Json.dll
