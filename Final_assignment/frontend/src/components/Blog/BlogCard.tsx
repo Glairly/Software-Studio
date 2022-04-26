@@ -107,7 +107,7 @@ export default function BlogCard(props: FeaturedPostProps) {
           </Typography>
           {/* tags */}
           <Typography component="h2" variant="subtitle2" color="gray">
-            {post.blog.tags.split(",").slice(0, 2).join(" • ")}
+            {post?.blog?.tags?.split(",").slice(0, 2).join(" • ")}
           </Typography>
           <Typography
             variant="subtitle1"
