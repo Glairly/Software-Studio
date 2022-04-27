@@ -71,7 +71,7 @@ export default function Comment(props: CommentProps) {
 
   return (
     <>
-      {user.id !== undefined ? (
+      {user.id !== undefined && !user.disabled ? (
         <Grid direction="row">
           <Grid item justifyContent="start" alignItems="center">
             <StyledPaper
