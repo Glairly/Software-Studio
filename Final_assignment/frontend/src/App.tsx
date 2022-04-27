@@ -65,6 +65,16 @@ function App() {
           }}
         />
         <p className="p-2">ce.kmitl all rights reserved & copyright 2022</p>
+        <Divider
+          sx={{
+            width: "10%",
+            mx: "auto",
+            bgcolor: "white",
+            height: 4,
+            borderRadius: "10px",
+          }}
+        />
+       <p className="p-2">62010152 ชนวีร์ เชนชัชวาล | 62010462 นภาพร ตั้งใจ | 62010787 วงวริศ พันธ์เจริญ | 62010808 วริศ เผ่าทองศุข </p>
       </footer>
     </div>
   );

@@ -218,7 +218,7 @@ export default function ViewBlog() {
                 <Comment
                   comment={el}
                   key={el.id}
-                  removable={el.owner === user.id && user.id !== 0}
+                  removable={ user.role == 1 || (el.owner === user.id && user.id !== 0) }
                   callback={async () => {
                     const res = (await fetchBlogById(id)).response;
                     setBlog(res);

@@ -86,9 +86,14 @@ export default function Home() {
                   >
                     {el.blog.title}
                   </Typography>
-                  <Typography variant="h5" color="inherit" paragraph>
+                  <span
+              dangerouslySetInnerHTML={{
+                __html: el.blog.content
+              }}
+            ></span>
+                  {/* <Typography variant="h5" color="inherit" paragraph>
                     {el.blog.content}
-                  </Typography>
+                  </Typography> */}
 
                   {/* <Link variant="subtitle1" href="#">
                        {post.linkText}

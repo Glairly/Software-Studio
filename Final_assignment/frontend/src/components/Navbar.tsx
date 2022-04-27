@@ -185,8 +185,8 @@ const Navbar = (props: NavbarProps) => {
               src={require("../assets/lotus-flower.png")}
               style={{ width: 44, height: 44, marginRight: 16 }}
             />
-            <span className="font-bold">Pra-Song</span>{" "}
-            {user.role ? "| Admin" : ""}{" "}
+            <span className="font-bold mr-2">Pra-Song</span>
+            {user.role ? <span>| Admin</span> : ""}
           </Link>
         </Typography>
 
